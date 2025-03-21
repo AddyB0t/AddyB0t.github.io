@@ -1,0 +1,56 @@
+baseURL = 'https://addyb0t.github.io/'
+languageCode = 'en-us'
+title = 'My Portfolio'
+theme = 'PaperMod'
+
+# Enable search
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+[params]
+  description = "My Professional Portfolio"
+  author = "Your Name"
+  # defaultTheme = "auto" # dark, light, auto
+  # mainSections = ["posts"]
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+  ShowFullTextinRSS = true
+
+[params.homeInfoParams]
+  Title = "Welcome to My Portfolio"
+  Content = "This is a showcase of my projects and professional experience"
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/AddyB0t"
+
+[[params.socialIcons]]
+  name = "linkedin"
+  url = "https://linkedin.com/in/yourusername"
+
+# Menu Items
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 5
+
+[[menu.main]]
+  name = "Projects"
+  url = "/projects/"
+  weight = 10
+
+[[menu.main]]
+  name = "Resume"
+  url = "/resume/"
+  weight = 15
+
+[[menu.main]]
+  name = "Contact"
+  url = "/contact/"
+  weight = 20
