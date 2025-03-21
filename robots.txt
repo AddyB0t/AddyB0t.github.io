@@ -1,3 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: https://addyb0t.github.io/sitemap.xml
