@@ -7,5 +7,26 @@
     <generator>Hugo -- 0.145.0</generator>
     <language>en-us</language>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cv</title>
+      <link>http://localhost:1313/tags/cv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/cv/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Portfolio</title>
+      <link>http://localhost:1313/tags/portfolio/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/portfolio/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Resume</title>
+      <link>http://localhost:1313/tags/resume/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/resume/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
