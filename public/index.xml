@@ -8,27 +8,6 @@
     <language>en-us</language>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Andrew Tate</title>
-      <link>http://localhost:1313/posts/andrew-tate/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/andrew-tate/</guid>
-      <description>&lt;p&gt;These are some things that I have learned from watching Andrew Tate&amp;rsquo;s videos:&lt;/p&gt;
-&lt;h2 id=&#34;politicians&#34;&gt;Politicians&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Politicians are not stupid&lt;/strong&gt;: Do not think that politicians are stupid; that is a very optimistic view. They are not stupid; they know what they are doing. It is you who is confused because you think they work for you. You believe the politicians are your representatives, and when they don&amp;rsquo;t represent your interests, you think they are dumb. No! They work for someone else. They use this democracy thing to only allow you to accept it. They are doing exactly what the people who pay them want them to do; in fact, they are doing it fantastically. Your confusion stems from thinking that they care about you. They never have.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;freedom&#34;&gt;Freedom&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;How to maintain illusion of freedom&lt;/strong&gt;: By putting freaks to the front. This person chopped his dick off, see we are free!(You are free to hurt yourself). But do not be fooled you are not free to say anything against the power, anything important.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;anxiety&#34;&gt;Anxiety&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;You have anxiety because you should be anxious, Why is a mouse anxious ? Same for you! The large bear does not get anxious. A mouse think a noise (anxious) it might kill me! Bear thinks I might want to kill it! Its a different vibe.&lt;/li&gt;
-&lt;li&gt;Anxiety is not a disorder - it is a natural conclusion of your ineptitude, its your soul giving you feedback. Anxiety is cured by strength.&lt;/li&gt;
-&lt;li&gt;Dying ain&amp;rsquo;t so bad untill unless you die for a good reason. Dying is not the worst thing that can heppen, living without a purpose is the worst thing that can happen.&lt;/li&gt;
-&lt;/ul&gt;</description>
-    </item>
-    <item>
       <title>CV</title>
       <link>http://localhost:1313/cv/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -143,6 +122,16 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;</description>
+    </item>
+    <item>
+      <title>What I learned while making my CV</title>
+      <link>http://localhost:1313/posts/andrew-tate/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/andrew-tate/</guid>
+      <description>&lt;h1 id=&#34;how-to-create-an-effective-cv-a-comprehensive-guide&#34;&gt;How to Create an Effective CV: A Comprehensive Guide&lt;/h1&gt;
+&lt;p&gt;Creating a compelling CV (Curriculum Vitae) is essential for making a strong first impression on potential employers. A well-crafted CV can significantly increase your chances of landing interviews and ultimately securing your desired position. In this post, I&amp;rsquo;ll share insights and strategies I learned while creating my own CV.&lt;/p&gt;
+&lt;h2 id=&#34;understanding-the-purpose-of-a-cv&#34;&gt;Understanding the Purpose of a CV&lt;/h2&gt;
+&lt;p&gt;Before diving into the creation process, it&amp;rsquo;s important to understand what a CV is meant to accomplish:&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
