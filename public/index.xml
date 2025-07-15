@@ -1,45 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Addy</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on Addy</description>
-    <generator>Hugo -- 0.145.0</generator>
-    <language>en-us</language>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>CV</title>
-      <link>http://localhost:1313/cv/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/cv/</guid>
-      <description>&lt;p&gt;My name is Aaditya Barak. I am a student of Electrical and Electronics Engineering at University Institute of Engineering and Technology, Chandigarh. I am a machine learning enthusiast and currently in third year of my undergraduate studies.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Phone: +91-9896127290&lt;/li&gt;
-&lt;li&gt;Email: &lt;a href=&#34;mailto:aadityabarak472@gmail.com&#34;&gt;aadityabarak472@gmail.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;GitHub: &lt;a href=&#34;https://github.com/AddyB0t&#34;&gt;https://github.com/AddyB0t&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;X: &lt;a href=&#34;https://x.com/aadi29494&#34;&gt;https://x.com/aadi29494&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Hugging Face: &lt;a href=&#34;https://huggingface.co/AddyB0t&#34;&gt;https://huggingface.co/AddyB0t&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;technical-skills&#34;&gt;&lt;strong&gt;Technical Skills&lt;/strong&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Programming&lt;/strong&gt;: Python, C, C++, MATLAB&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Machine Learning &amp;amp; AI&lt;/strong&gt;: PyTorch, Hugging Face, OpenCV, CNN, NLP, FastAPI, LangChain, Model Fine-Tuning, StreamLit, RESTful API&amp;rsquo;s, WebSocket, Cursor, Claude Code, N8N&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;IoT&lt;/strong&gt;: Arduino, Raspberry Pi, ESP32, 8085 Microprocessor&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tools&lt;/strong&gt;: CX Programmer, NB Designer, P-Spice, Simulink, Cursor, Git/GitHub, Bash&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;internshipfreelancing-experience&#34;&gt;&lt;strong&gt;Internship/Freelancing Experience&lt;/strong&gt;&lt;/h3&gt;
-&lt;h4 id=&#34;prudentbit-ai-intern&#34;&gt;&lt;strong&gt;PRUDENTBIT (AI Intern)&lt;/strong&gt;&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;Duration:&lt;/strong&gt; May 2025 - July 2025&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>What I learned while making my CV</title>
-      <link>http://localhost:1313/posts/andrew-tate/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/andrew-tate/</guid>
-      <description>&lt;h1 id=&#34;how-to-create-an-effective-cv-a-comprehensive-guide&#34;&gt;How to Create an Effective CV: A Comprehensive Guide&lt;/h1&gt;
-&lt;p&gt;Creating a compelling CV (Curriculum Vitae) is essential for making a strong first impression on potential employers. A well-crafted CV can significantly increase your chances of landing interviews and ultimately securing your desired position. In this post, I&amp;rsquo;ll share insights and strategies I learned while creating my own CV.&lt;/p&gt;
-&lt;h2 id=&#34;understanding-the-purpose-of-a-cv&#34;&gt;Understanding the Purpose of a CV&lt;/h2&gt;
-&lt;p&gt;Before diving into the creation process, it&amp;rsquo;s important to understand what a CV is meant to accomplish:&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Addy</title><link>https://addyb0t.github.io/</link><description>Recent content on Addy</description><generator>Hugo -- 0.145.0</generator><language>en-us</language><atom:link href="https://addyb0t.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>CV</title><link>https://addyb0t.github.io/cv/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://addyb0t.github.io/cv/</guid><description>&lt;p>My name is Aaditya Barak. I am a student of Electrical and Electronics Engineering at University Institute of Engineering and Technology, Chandigarh. I am a machine learning enthusiast and currently in third year of my undergraduate studies.&lt;/p>
+&lt;ul>
+&lt;li>Phone: +91-9896127290&lt;/li>
+&lt;li>Email: &lt;a href="mailto:aadityabarak472@gmail.com">aadityabarak472@gmail.com&lt;/a>&lt;/li>
+&lt;li>GitHub: &lt;a href="https://github.com/AddyB0t">https://github.com/AddyB0t&lt;/a>&lt;/li>
+&lt;li>X: &lt;a href="https://x.com/aadi29494">https://x.com/aadi29494&lt;/a>&lt;/li>
+&lt;li>Hugging Face: &lt;a href="https://huggingface.co/AddyB0t">https://huggingface.co/AddyB0t&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="technical-skills">&lt;strong>Technical Skills&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Programming&lt;/strong>: Python, C, C++, MATLAB&lt;/li>
+&lt;li>&lt;strong>Machine Learning &amp;amp; AI&lt;/strong>: PyTorch, Hugging Face, OpenCV, CNN, NLP, FastAPI, LangChain, Model Fine-Tuning, StreamLit, RESTful API&amp;rsquo;s, WebSocket, Cursor, Claude Code, N8N&lt;/li>
+&lt;li>&lt;strong>IoT&lt;/strong>: Arduino, Raspberry Pi, ESP32, 8085 Microprocessor&lt;/li>
+&lt;li>&lt;strong>Tools&lt;/strong>: CX Programmer, NB Designer, P-Spice, Simulink, Cursor, Git/GitHub, Bash&lt;/li>
+&lt;/ul>
+&lt;h3 id="internshipfreelancing-experience">&lt;strong>Internship/Freelancing Experience&lt;/strong>&lt;/h3>
+&lt;h4 id="prudentbit-ai-intern">&lt;strong>PRUDENTBIT (AI Intern)&lt;/strong>&lt;/h4>
+&lt;p>&lt;strong>Duration:&lt;/strong> May 2025 - July 2025&lt;/p></description></item><item><title>What I learned while making my CV</title><link>https://addyb0t.github.io/posts/andrew-tate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://addyb0t.github.io/posts/andrew-tate/</guid><description>&lt;h1 id="how-to-create-an-effective-cv-a-comprehensive-guide">How to Create an Effective CV: A Comprehensive Guide&lt;/h1>
+&lt;p>Creating a compelling CV (Curriculum Vitae) is essential for making a strong first impression on potential employers. A well-crafted CV can significantly increase your chances of landing interviews and ultimately securing your desired position. In this post, I&amp;rsquo;ll share insights and strategies I learned while creating my own CV.&lt;/p>
+&lt;h2 id="understanding-the-purpose-of-a-cv">Understanding the Purpose of a CV&lt;/h2>
+&lt;p>Before diving into the creation process, it&amp;rsquo;s important to understand what a CV is meant to accomplish:&lt;/p></description></item></channel></rss>

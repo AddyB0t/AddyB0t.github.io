@@ -1,18 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Categories on Addy</title>
-    <link>http://localhost:1313/categories/</link>
-    <description>Recent content in Categories on Addy</description>
-    <generator>Hugo -- 0.145.0</generator>
-    <language>en-us</language>
-    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Professional</title>
-      <link>http://localhost:1313/categories/professional/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/professional/</guid>
-      <description></description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Categories on Addy</title><link>https://addyb0t.github.io/categories/</link><description>Recent content in Categories on Addy</description><generator>Hugo -- 0.145.0</generator><language>en-us</language><atom:link href="https://addyb0t.github.io/categories/index.xml" rel="self" type="application/rss+xml"/><item><title>Professional</title><link>https://addyb0t.github.io/categories/professional/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://addyb0t.github.io/categories/professional/</guid><description/></item></channel></rss>
