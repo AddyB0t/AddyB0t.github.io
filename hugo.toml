@@ -16,6 +16,8 @@ theme = 'PaperMod'
   mainSections = ["posts"]
   enableDropdownMenu = true
 
+ignoreLogs = ['warning-partial-superfluous-prefix']
+
   [params.profileMode]
     enabled = true
     title = "Addy"
