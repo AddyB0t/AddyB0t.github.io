@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Addy — Terminal/Hacker Theme</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green: #00ff41;
+    --dim-green: #00aa2a;
+    --dark-green: #004d00;
+    --bg: #0a0a0a;
+    --surface: #111;
+    --cyan: #00ffff;
+    --amber: #ffaa00;
+    --red: #ff3333;
+  }
+
+  body {
+    font-family: 'Fira Code', 'JetBrains Mono', monospace;
+    background: var(--bg);
+    color: var(--green);
+    min-height: 100vh;
+    padding: 0;
+    position: relative;
+  }
+
+  /* CRT screen effect */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.08) 0px,
+      rgba(0,0,0,0.08) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  /* === TERMINAL HEADER === */
+  .terminal-header {
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red { background: #ff5f57; }
+  .dot-yellow { background: #febc2e; }
+  .dot-green { background: #28c840; }
+
+  .terminal-title {
+    font-size: 12px;
+    color: #888;
+    flex: 1;
+    text-align: center;
+  }
+
+  /* === TABS === */
+  .terminal-tabs {
+    background: #1a1a1a;
+    display: flex;
+    border-bottom: 1px solid #333;
+    overflow-x: auto;
+  }
+
+  .tab {
+    padding: 6px 16px;
+    font-size: 11px;
+    color: #666;
+    border-right: 1px solid #333;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+    white-space: nowrap;
+  }
+
+  .tab.active {
+    color: var(--green);
+    background: #222;
+    border-bottom: 2px solid var(--green);
+  }
+
+  .tab:hover {
+    color: #aaa;
+    background: #1e1e1e;
+  }
+
+  /* === MAIN TERMINAL === */
+  .terminal {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .prompt {
+    color: var(--cyan);
+    margin-right: 8px;
+  }
+
+  .command {
+    color: #fff;
+  }
+
+  .line {
+    margin-bottom: 3px;
+    line-height: 1.6;
+    font-size: 13px;
+  }
+
+  .line.input {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 4px;
+  }
+
+  .comment {
+    color: #555;
+    font-style: italic;
+  }
+
+  .output {
+    color: var(--green);
+    padding-left: 20px;
+  }
+
+  .highlight {
+    color: var(--amber);
+    font-weight: 600;
+  }
+
+  .error {
+    color: var(--red);
+  }
+
+  .success {
+    color: var(--green);
+  }
+
+  .info {
+    color: var(--cyan);
+  }
+
+  .dim {
+    color: #555;
+  }
+
+  /* === ASCII ART === */
+  .ascii-art {
+    color: var(--green);
+    font-size: 11px;
+    line-height: 1.2;
+    margin: 16px 0;
+    white-space: pre;
+    text-shadow: 0 0 10px rgba(0,255,65,0.3);
+  }
+
+  /* === TABLE === */
+  .term-table {
+    margin: 8px 0 8px 20px;
+    font-size: 12px;
+  }
+
+  .term-table .row {
+    display: flex;
+    border-bottom: 1px dashed #222;
+    padding: 3px 0;
+  }
+
+  .term-table .key {
+    color: var(--cyan);
+    min-width: 200px;
+  }
+
+  .term-table .val {
+    color: #ccc;
+  }
+
+  /* === PROGRESS BAR === */
+  .progress-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 20px;
+    margin: 4px 0;
+    font-size: 12px;
+  }
+
+  .progress-bar {
+    width: 200px;
+    height: 10px;
+    background: #222;
+    border: 1px solid #444;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--green);
+    transition: width 1s;
+  }
+
+  .progress-fill.high { background: var(--green); }
+  .progress-fill.mid { background: var(--amber); }
+  .progress-fill.low { background: var(--red); }
+
+  /* === TREE VIEW === */
+  .tree {
+    padding-left: 20px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .tree .branch {
+    color: #555;
+  }
+
+  .tree .folder {
+    color: var(--cyan);
+    font-weight: 600;
+  }
+
+  .tree .file {
+    color: #ccc;
+  }
+
+  /* Blinking cursor */
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: var(--green);
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* === SECTION DIVIDER === */
+  .divider {
+    color: #333;
+    margin: 16px 0;
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  /* Matrix rain background (subtle) */
+  .matrix-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    opacity: 0.03;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--green);
+    overflow: hidden;
+    white-space: pre;
+    font-family: monospace;
+  }
+
+  @media (max-width: 768px) {
+    .terminal { padding: 10px; }
+    .term-table .key { min-width: 120px; }
+    .ascii-art { font-size: 7px; }
+    .progress-bar { width: 100px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="matrix-bg">01001000 01100101 01101100 01101100 01101111 00100000 01010111 01101111 01110010 01101100 01100100</div>
+
+<!-- Terminal Header -->
+<div class="terminal-header">
+  <div class="terminal-dots">
+    <div class="dot dot-red"></div>
+    <div class="dot dot-yellow"></div>
+    <div class="dot dot-green"></div>
+  </div>
+  <div class="terminal-title">addy@ai-engineer ~ — bash — 120x40</div>
+</div>
+
+<!-- Tabs -->
+<div class="terminal-tabs">
+  <div class="tab active">profile</div>
+  <div class="tab">experience</div>
+  <div class="tab">projects</div>
+  <div class="tab">skills</div>
+  <div class="tab">blog</div>
+</div>
+
+<!-- Terminal Content -->
+<div class="terminal">
+
+  <!-- Boot Sequence -->
+  <div class="line dim">[2026-03-04 15:00:01] System boot...</div>
+  <div class="line dim">[2026-03-04 15:00:01] Loading AI modules... OK</div>
+  <div class="line dim">[2026-03-04 15:00:02] Neural networks initialized.</div>
+  <div class="line">&nbsp;</div>
+
+  <!-- ASCII Art Name -->
+  <div class="ascii-art">
+    ___       ___       ___       ___       ___       ___       ___       ___
+   /\  \     /\  \     /\  \     /\  \     /\  \     /\__\     /\  \     /\  \
+  /::\  \   /::\  \   /::\  \   _\:\  \    \:\  \   |::L__L   /::\  \   /::\  \
+ /\:\:\__\ /:/\:\__\ /:/\:\__\ /\/::\__\   /:/\:\__\ |:::\__\ /::\:\__\ /::\:\__\
+ \:\:\/__/ \:\/:/  / \:\/:/  / \::/\/__/  /:/  \/__/ /:;;/__/ \:\:\/  / \/\::/  /
+  \::/  /   \::/  /   \::/  /   \/__/     \/__/      \/__/     \:\/  /    /:/  /
+   \/__/     \/__/     \/__/                                     \/__/     \/__/
+
+  ═══════════════════════════════════════════════════════════════════════════
+       A A D I T Y A   B A R A K  |  AI Engineer  |  addyb0t.github.io
+  ═══════════════════════════════════════════════════════════════════════════
+  </div>
+
+  <!-- whoami -->
+  <div class="line input">
+    <span class="prompt">addy@portfolio:~$</span>
+    <span class="command">whoami --verbose</span>
+  </div>
+  <div class="term-table">
+    <div class="row"><span class="key">Name</span><span class="val">Aaditya Barak</span></div>
+    <div class="row"><span class="key">Title</span><span class="val highlight">AI Engineer — LLMs, RAG Systems, Document Intelligence</span></div>
+    <div class="row"><span class="key">Email</span><span class="val">aadityabarak970@gmail.com</span></div>
+    <div class="row"><span class="key">Phone</span><span class="val">+91 9896127290</span></div>
+    <div class="row"><span class="key">LinkedIn</span><span class="val info">linkedin.com/in/aaditya-barak</span></div>
+    <div class="row"><span class="key">GitHub</span><span class="val info">github.com/AddyB0t</span></div>
+    <div class="row"><span class="key">Location</span><span class="val">Chandigarh, India</span></div>
+  </div>
+
+  <div class="divider">─────────────────────────────────────────────────────────────────</div>
+
+  <!-- Skills -->
+  <div class="line input">
+    <span class="prompt">addy@portfolio:~$</span>
+    <span class="command">cat /etc/skills.conf</span>
+  </div>
+  <div class="line output"><span class="comment"># === Technical Skills ===</span></div>
+
+  <div class="progress-line">
+    <span style="min-width:160px;color:#ccc">Python</span>
+    <div class="progress-bar"><div class="progress-fill high" style="width:95%"></div></div>
+    <span class="highlight">████████████████████ 95%</span>
+  </div>
+  <div class="progress-line">
+    <span style="min-width:160px;color:#ccc">PyTorch / ML</span>
+    <div class="progress-bar"><div class="progress-fill high" style="width:88%"></div></div>
+    <span class="highlight">█████████████████░░░ 88%</span>
+  </div>
+  <div class="progress-line">
+    <span style="min-width:160px;color:#ccc">LLMs / GenAI</span>
+    <div class="progress-bar"><div class="progress-fill high" style="width:92%"></div></div>
+    <span class="highlight">██████████████████░░ 92%</span>
+  </div>
+  <div class="progress-line">
+    <span style="min-width:160px;color:#ccc">RAG / LangChain</span>
+    <div class="progress-bar"><div class="progress-fill high" style="width:90%"></div></div>
+    <span class="highlight">██████████████████░░ 90%</span>
+  </div>
+  <div class="progress-line">
+    <span style="min-width:160px;color:#ccc">NLP / Transformers</span>
+    <div class="progress-bar"><div class="progress-fill high" style="width:85%"></div></div>
+    <span class="highlight">█████████████████░░░ 85%</span>
+  </div>
+  <div class="progress-line">
+    <span style="min-width:160px;color:#ccc">PostgreSQL / Redis</span>
+    <div class="progress-bar"><div class="progress-fill mid" style="width:78%"></div></div>
+    <span style="color:var(--amber)">███████████████░░░░░ 78%</span>
+  </div>
+  <div class="progress-line">
+    <span style="min-width:160px;color:#ccc">Computer Vision</span>
+    <div class="progress-bar"><div class="progress-fill mid" style="width:75%"></div></div>
+    <span style="color:var(--amber)">███████████████░░░░░ 75%</span>
+  </div>
+  <div class="progress-line">
+    <span style="min-width:160px;color:#ccc">JavaScript / SQL</span>
+    <div class="progress-bar"><div class="progress-fill mid" style="width:70%"></div></div>
+    <span style="color:var(--amber)">██████████████░░░░░░ 70%</span>
+  </div>
+
+  <div class="divider">─────────────────────────────────────────────────────────────────</div>
+
+  <!-- Experience -->
+  <div class="line input">
+    <span class="prompt">addy@portfolio:~$</span>
+    <span class="command">git log --oneline --experience</span>
+  </div>
+
+  <div class="line output"><span class="info">commit a1b2c3d</span> <span class="highlight">(HEAD -> main)</span> <span class="dim">May 2025 – Dec 2025</span></div>
+  <div class="line output" style="padding-left:40px"><span class="highlight">PrudentBit — Artificial Intelligence Engineer</span> <span class="dim">| Noida</span></div>
+  <div class="line output" style="padding-left:40px;color:#aaa">+ Led production-grade document redaction system (PDF, DOCX, images)</div>
+  <div class="line output" style="padding-left:40px;color:#aaa">+ Built end-to-end document AI pipeline (OCR + PII + masking) — 2x speed</div>
+  <div class="line output" style="padding-left:40px;color:#aaa">+ Preprocessing pipeline — OCR accuracy +25–35%</div>
+  <div class="line output" style="padding-left:40px;color:#aaa">+ TinyBERT reranking (100ms) — improved search relevance</div>
+  <div class="line output" style="padding-left:40px;color:var(--green)">  70% manual effort reduction | 1,000+ documents processed</div>
+
+  <div class="line">&nbsp;</div>
+  <div class="line output"><span class="info">commit e4f5g6h</span> <span class="dim">May 2025 – Present</span></div>
+  <div class="line output" style="padding-left:40px"><span class="highlight">Freelance AI Engineer — Remote</span></div>
+  <div class="line output" style="padding-left:40px;color:#aaa">+ ZapUp: AI Educational Platform (Next.js + Supabase)</div>
+  <div class="line output" style="padding-left:40px;color:#aaa">+ TITTA: AI Construction Analysis — RAG for PDFs + CAD (DWG/DXF)</div>
+  <div class="line output" style="padding-left:40px;color:#aaa">+ BGE-large embeddings | Supabase vector | PostgreSQL</div>
+
+  <div class="divider">─────────────────────────────────────────────────────────────────</div>
+
+  <!-- Projects -->
+  <div class="line input">
+    <span class="prompt">addy@portfolio:~$</span>
+    <span class="command">ls -la ~/projects/</span>
+  </div>
+
+  <div class="tree">
+    <div><span class="branch">drwxr-xr-x</span>  <span class="folder">resume-parser/</span>  <span class="dim">Nov 2025</span>  <span class="info">[FastAPI, PostgreSQL]</span></div>
+    <div style="padding-left:20px;color:#aaa">OCR + NER + LLM scoring | 1,000+ resumes | 40% recruiter effort reduction</div>
+    <div><span class="branch">drwxr-xr-x</span>  <span class="folder">deepfake-detect/</span>  <span class="dim">Apr 2025</span>  <span class="info">[TensorFlow]</span></div>
+    <div style="padding-left:20px;color:#aaa">93% accuracy | VGG16 transfer learning | Real vs synthetic datasets</div>
+    <div><span class="branch">drwxr-xr-x</span>  <span class="folder">bert-ner/</span>  <span class="dim">Jul 2025</span>  <span class="info">[Transformers, PyTorch]</span></div>
+    <div style="padding-left:20px;color:#aaa">Token classification | HuggingFace fine-tuning | NER pipeline</div>
+  </div>
+
+  <div class="divider">─────────────────────────────────────────────────────────────────</div>
+
+  <!-- Education -->
+  <div class="line input">
+    <span class="prompt">addy@portfolio:~$</span>
+    <span class="command">cat /etc/education</span>
+  </div>
+  <div class="term-table">
+    <div class="row"><span class="key">Institution</span><span class="val">UIET, Panjab University</span></div>
+    <div class="row"><span class="key">Degree</span><span class="val">B.E. — Electrical & Electronics Engineering</span></div>
+    <div class="row"><span class="key">Duration</span><span class="val">Sep 2022 – May 2026</span></div>
+    <div class="row"><span class="key">Location</span><span class="val">Chandigarh, India</span></div>
+    <div class="row"><span class="key">Extra</span><span class="val">Open Source Contributor & Mentor @ Panjab University</span></div>
+  </div>
+
+  <div class="divider">─────────────────────────────────────────────────────────────────</div>
+
+  <!-- Prompt -->
+  <div class="line input">
+    <span class="prompt">addy@portfolio:~$</span>
+    <span class="command"><span class="cursor"></span></span>
+  </div>
+
+</div>
+
+</body>
+</html>

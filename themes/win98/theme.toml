@@ -1,0 +1,7 @@
+name = "Win98"
+license = "MIT"
+description = "A Windows 98 desktop experience theme for Hugo"
+min_version = "0.112.4"
+
+[author]
+  name = "Aaditya Barak"

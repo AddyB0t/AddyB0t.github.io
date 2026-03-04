@@ -1,0 +1,16 @@
+<div class="taskbar98">
+  <button class="start98" onclick="toggleStart()">
+    <span class="s-logo">&#8862;</span> <b>Start</b>
+  </button>
+  <div class="tb98-items" id="tbItems98">
+    {{ if .IsHome }}
+    <div class="tb98-item pressed" onclick="openWin('portfolio')">💻 Portfolio</div>
+    {{ else }}
+    <div class="tb98-item pressed">📝 {{ .Title }}</div>
+    {{ end }}
+  </div>
+  <div class="tray98">
+    <span>🔊</span>
+    <span id="clock98"></span>
+  </div>
+</div>

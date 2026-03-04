@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  {{ if .IsHome }}
+    {{ partial "boot-screen.html" . }}
+  {{ end }}
+
+  <div class="desktop" id="desktop">
+    {{ if .IsHome }}
+      {{ partial "desktop-icons.html" . }}
+    {{ end }}
+
+    {{ block "main" . }}{{ end }}
+  </div>
+
+  {{ if .IsHome }}
+    {{ partial "welcome-dialog.html" . }}
+  {{ end }}
+
+  {{ partial "start-menu.html" . }}
+  {{ partial "taskbar.html" . }}
+
+  {{- $js := resources.Get "js/win98.js" | resources.Minify }}
+  <script src="{{ $js.RelPermalink }}"></script>
+</body>
+</html>

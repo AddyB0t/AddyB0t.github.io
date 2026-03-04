@@ -1,0 +1,19 @@
+<div class="dialog98 open" id="welcomeDialog">
+  <div class="w98-title">
+    <div class="w98-title-left"><span class="w98-title-icon">ℹ️</span> Welcome</div>
+    <div class="w98-title-btns">
+      <button class="w98-btn" onclick="document.getElementById('welcomeDialog').classList.remove('open')">✕</button>
+    </div>
+  </div>
+  <div class="dialog-body">
+    <div class="dialog-icon">💻</div>
+    <div class="dialog-text">
+      <b>Welcome to {{ site.Data.profile.name }}'s Desktop!</b><br><br>
+      Double-click icons to open windows.<br>
+      Use the <b>Start</b> menu for navigation.
+    </div>
+  </div>
+  <div class="dialog-btns">
+    <button class="dialog-btn" onclick="document.getElementById('welcomeDialog').classList.remove('open')" autofocus>OK</button>
+  </div>
+</div>

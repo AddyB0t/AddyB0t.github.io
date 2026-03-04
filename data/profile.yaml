@@ -1,0 +1,39 @@
+name: "Aaditya Barak"
+tagline: "AI Engineer — LLMs, RAG Systems, Document Intelligence"
+photo: "/images/profile.jpg"
+links:
+  - emoji: "📧"
+    label: "Email"
+    url: "mailto:aadityabarak970@gmail.com"
+    detail: "aadityabarak970@gmail.com"
+    external: false
+  - emoji: "💼"
+    label: "LinkedIn"
+    url: "https://www.linkedin.com/in/aaditya-barak-a744b0317"
+    detail: "aaditya-barak"
+    external: true
+  - emoji: "🌐"
+    label: "GitHub"
+    url: "https://github.com/AddyB0t"
+    detail: "AddyB0t"
+    external: true
+  - emoji: "📞"
+    label: "Call"
+    url: "tel:+919896127290"
+    detail: "+91 9896127290"
+    external: false
+  - emoji: "🐦"
+    label: "X"
+    url: "https://x.com/aadi29494"
+    detail: "@aadi29494"
+    external: true
+  - emoji: "💬"
+    label: "Discord"
+    url: "https://discord.com/invite/QHAbprqQme"
+    detail: "Community"
+    external: true
+  - emoji: "🤗"
+    label: "HuggingFace"
+    url: "https://huggingface.co/AddyB0t"
+    detail: "AddyB0t"
+    external: true

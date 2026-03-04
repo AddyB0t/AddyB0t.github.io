@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Addy — Windows XP Theme</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Tahoma&family=MS+Sans+Serif&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+    background: #3a6ea5;
+    background-image:
+      radial-gradient(ellipse at bottom, #4a8bc2 0%, #245d9a 40%, #1a4980 70%, #0f3460 100%);
+    min-height: 100vh;
+    padding: 20px;
+    padding-bottom: 60px;
+    cursor: default;
+    overflow-x: hidden;
+  }
+
+  /* === DESKTOP ICONS === */
+  .desktop-icons {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1;
+  }
+
+  .desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 3px;
+    width: 75px;
+    text-align: center;
+  }
+
+  .desktop-icon:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  .desktop-icon .icon-img {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+  }
+
+  .desktop-icon span {
+    color: white;
+    font-size: 11px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    line-height: 1.2;
+  }
+
+  /* === WINDOW === */
+  .xp-window {
+    background: #ece9d8;
+    border: 1px solid #0054e3;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.3);
+    margin: 20px auto;
+    max-width: 900px;
+    overflow: hidden;
+  }
+
+  .title-bar {
+    background: linear-gradient(180deg, #0997ff 0%, #0053ee 8%, #0050ee 20%, #006af9 50%, #0048d7 80%, #0048d7 90%, #005bf0 100%);
+    color: white;
+    padding: 4px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .title-bar-text {
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .title-bar-controls {
+    display: flex;
+    gap: 2px;
+  }
+
+  .title-bar-controls button {
+    width: 21px;
+    height: 21px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .btn-minimize {
+    background: linear-gradient(180deg, #3c8df0 0%, #2663de 50%, #1941c1 100%);
+  }
+  .btn-maximize {
+    background: linear-gradient(180deg, #3c8df0 0%, #2663de 50%, #1941c1 100%);
+  }
+  .btn-close {
+    background: linear-gradient(180deg, #e8775e 0%, #d14b34 50%, #c5311f 100%);
+  }
+
+  .title-bar-controls button:hover {
+    filter: brightness(1.15);
+  }
+
+  /* === MENU BAR === */
+  .menu-bar {
+    background: #ece9d8;
+    border-bottom: 1px solid #aca899;
+    padding: 2px 4px;
+    display: flex;
+    gap: 2px;
+  }
+
+  .menu-bar span {
+    padding: 2px 8px;
+    font-size: 12px;
+    color: #000;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+
+  .menu-bar span:hover {
+    background: #316ac5;
+    color: white;
+  }
+
+  /* === ADDRESS BAR === */
+  .address-bar {
+    background: #ece9d8;
+    border-bottom: 1px solid #aca899;
+    padding: 3px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .address-bar label {
+    color: #000;
+    font-size: 12px;
+  }
+
+  .address-bar input {
+    flex: 1;
+    padding: 2px 4px;
+    border: 1px solid #7f9db9;
+    background: white;
+    font-size: 12px;
+    font-family: 'Tahoma', sans-serif;
+    border-radius: 1px;
+  }
+
+  .address-bar .go-btn {
+    padding: 1px 10px;
+    background: linear-gradient(180deg, #fff 0%, #ece9d8 100%);
+    border: 1px solid #aca899;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+
+  /* === WINDOW CONTENT === */
+  .window-content {
+    background: white;
+    padding: 30px;
+    min-height: 400px;
+  }
+
+  /* === PROFILE HEADER === */
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #316ac5;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #316ac5, #0054e3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    color: white;
+    border: 3px solid #ece9d8;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    flex-shrink: 0;
+  }
+
+  .profile-info h1 {
+    font-size: 28px;
+    color: #003399;
+    margin-bottom: 4px;
+  }
+
+  .profile-info .tagline {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+  }
+
+  .profile-links {
+    display: flex;
+    gap: 10px;
+  }
+
+  .profile-links a {
+    font-size: 11px;
+    color: #316ac5;
+    text-decoration: none;
+    padding: 2px 10px;
+    border: 1px solid #aca899;
+    background: linear-gradient(180deg, #fff 0%, #ece9d8 100%);
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  .profile-links a:hover {
+    background: linear-gradient(180deg, #ece9d8 0%, #d6d2c2 100%);
+  }
+
+  /* === XP PANEL (like explorer sidebar) === */
+  .xp-panels {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 16px;
+  }
+
+  .sidebar-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .task-panel {
+    border: 1px solid #d6dff7;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .task-panel-header {
+    background: linear-gradient(180deg, #fefefe 0%, #d6dff7 100%);
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #215dc6;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid #d6dff7;
+  }
+
+  .task-panel-body {
+    background: #f1f2f8;
+    padding: 8px 10px;
+  }
+
+  .task-panel-body ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .task-panel-body li {
+    font-size: 11px;
+    padding: 3px 0;
+    color: #316ac5;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .task-panel-body li:hover {
+    text-decoration: underline;
+  }
+
+  .task-panel-body li .bullet {
+    color: #316ac5;
+    font-size: 8px;
+  }
+
+  /* === MAIN CONTENT === */
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* === SECTION CARDS (like folder view) === */
+  .section-card {
+    border: 1px solid #aca899;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .section-header {
+    background: linear-gradient(180deg, #fefefe 0%, #ece9d8 100%);
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #003399;
+    border-bottom: 1px solid #aca899;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-body {
+    background: white;
+    padding: 12px;
+  }
+
+  /* === SKILLS GRID (like icon view) === */
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    background: linear-gradient(180deg, #fff 0%, #ece9d8 100%);
+    border: 1px solid #aca899;
+    border-radius: 2px;
+    font-size: 11px;
+    color: #333;
+  }
+
+  .skill-chip .dot {
+    width: 6px;
+    height: 6px;
+    background: #316ac5;
+    border-radius: 50%;
+  }
+
+  /* === EXPERIENCE ENTRY === */
+  .exp-entry {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px dashed #ccc;
+  }
+
+  .exp-entry:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .exp-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #003399;
+  }
+
+  .exp-meta {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .exp-desc {
+    font-size: 12px;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  .exp-desc li {
+    margin-bottom: 3px;
+  }
+
+  /* === PROJECT TILES (like Windows Explorer tiles) === */
+  .project-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+  }
+
+  .project-tile {
+    border: 1px solid #aca899;
+    border-radius: 4px;
+    padding: 10px;
+    background: linear-gradient(180deg, #fff 0%, #f8f7f0 100%);
+    cursor: pointer;
+    transition: all 0.1s;
+  }
+
+  .project-tile:hover {
+    border-color: #316ac5;
+    background: linear-gradient(180deg, #e8f0fe 0%, #d6dff7 100%);
+  }
+
+  .project-tile .tile-icon {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+
+  .project-tile h4 {
+    font-size: 12px;
+    color: #003399;
+    margin-bottom: 4px;
+  }
+
+  .project-tile p {
+    font-size: 10px;
+    color: #666;
+    line-height: 1.4;
+  }
+
+  .project-tile .tile-tag {
+    display: inline-block;
+    font-size: 9px;
+    padding: 1px 6px;
+    background: #ece9d8;
+    border: 1px solid #aca899;
+    border-radius: 2px;
+    margin-top: 6px;
+    color: #333;
+  }
+
+  /* === STATUS BAR === */
+  .status-bar {
+    background: #ece9d8;
+    border-top: 1px solid #fff;
+    padding: 3px 8px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #444;
+  }
+
+  .status-bar .status-section {
+    border: 1px inset #aca899;
+    padding: 1px 8px;
+  }
+
+  /* === TASKBAR === */
+  .taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background: linear-gradient(180deg, #3168d5 0%, #1941a5 3%, #2a5ad6 50%, #1941a5 97%, #163b99 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    z-index: 1000;
+    box-shadow: 0 -1px 4px rgba(0,0,0,0.3);
+  }
+
+  .start-btn {
+    background: linear-gradient(180deg, #3b9c3f 0%, #2d8e31 30%, #1e7a22 70%, #1a6d1e 100%);
+    color: white;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    padding: 2px 14px 2px 8px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Tahoma', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .start-btn:hover {
+    filter: brightness(1.1);
+  }
+
+  .start-btn .win-logo {
+    font-size: 18px;
+  }
+
+  .taskbar-items {
+    display: flex;
+    gap: 3px;
+    margin-left: 8px;
+    flex: 1;
+  }
+
+  .taskbar-item {
+    background: linear-gradient(180deg, #3978e2 0%, #2461d0 50%, #1c56c0 100%);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 2px;
+    padding: 2px 12px;
+    font-size: 11px;
+    cursor: pointer;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .taskbar-item.active {
+    background: linear-gradient(180deg, #1c56c0 0%, #1a4fb0 50%, #163fa0 100%);
+    border: 1px inset rgba(0,0,0,0.2);
+  }
+
+  .system-tray {
+    background: linear-gradient(180deg, #1290e9 0%, #0c7cd5 50%, #0868b7 100%);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 8px;
+    font-size: 11px;
+    color: white;
+    border-left: 1px solid rgba(255,255,255,0.15);
+  }
+
+  @media (max-width: 768px) {
+    .xp-panels { grid-template-columns: 1fr; }
+    .desktop-icons { display: none; }
+    .profile-header { flex-direction: column; text-align: center; }
+    .profile-links { justify-content: center; }
+    .exp-meta { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Desktop Icons -->
+<div class="desktop-icons">
+  <div class="desktop-icon">
+    <div class="icon-img">🖥️</div>
+    <span>My Computer</span>
+  </div>
+  <div class="desktop-icon">
+    <div class="icon-img">📁</div>
+    <span>My Projects</span>
+  </div>
+  <div class="desktop-icon">
+    <div class="icon-img">🌐</div>
+    <span>GitHub</span>
+  </div>
+  <div class="desktop-icon">
+    <div class="icon-img">📧</div>
+    <span>Email Addy</span>
+  </div>
+  <div class="desktop-icon">
+    <div class="icon-img">🗑️</div>
+    <span>Recycle Bin</span>
+  </div>
+</div>
+
+<!-- Main Window -->
+<div class="xp-window" style="margin-top: 10px;">
+  <div class="title-bar">
+    <div class="title-bar-text">
+      <span>🌐</span> Aaditya Barak — AI Engineer — Internet Explorer
+    </div>
+    <div class="title-bar-controls">
+      <button class="btn-minimize">_</button>
+      <button class="btn-maximize">□</button>
+      <button class="btn-close">✕</button>
+    </div>
+  </div>
+
+  <div class="menu-bar">
+    <span>File</span>
+    <span>Edit</span>
+    <span>View</span>
+    <span>Favorites</span>
+    <span>Tools</span>
+    <span>Help</span>
+  </div>
+
+  <div class="address-bar">
+    <label>Address</label>
+    <input type="text" value="https://addyb0t.github.io/" readonly>
+    <button class="go-btn">Go →</button>
+  </div>
+
+  <div class="window-content">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="profile-avatar">AB</div>
+      <div class="profile-info">
+        <h1>Aaditya Barak</h1>
+        <div class="tagline">AI Engineer — LLMs, RAG Systems, Document Intelligence</div>
+        <div class="profile-links">
+          <a href="#">📧 aadityabarak970@gmail.com</a>
+          <a href="#">💼 LinkedIn</a>
+          <a href="#">🐙 GitHub</a>
+          <a href="#">📱 +91 9896127290</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Explorer Layout -->
+    <div class="xp-panels">
+      <!-- Sidebar -->
+      <div class="sidebar-panel">
+        <div class="task-panel">
+          <div class="task-panel-header">📋 Quick Links</div>
+          <div class="task-panel-body">
+            <ul>
+              <li><span class="bullet">▸</span> View Skills</li>
+              <li><span class="bullet">▸</span> Experience</li>
+              <li><span class="bullet">▸</span> Projects</li>
+              <li><span class="bullet">▸</span> Education</li>
+              <li><span class="bullet">▸</span> Blog Posts</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="task-panel">
+          <div class="task-panel-header">🛠️ Technical Skills</div>
+          <div class="task-panel-body">
+            <ul>
+              <li><span class="bullet">▸</span> Python, SQL, JS</li>
+              <li><span class="bullet">▸</span> PyTorch, NLP, CV</li>
+              <li><span class="bullet">▸</span> LLMs, RAG, LangChain</li>
+              <li><span class="bullet">▸</span> PostgreSQL, Redis</li>
+              <li><span class="bullet">▸</span> Git, Linux</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="task-panel">
+          <div class="task-panel-header">🎓 Education</div>
+          <div class="task-panel-body">
+            <ul>
+              <li><span class="bullet">▸</span> UIET, Panjab University</li>
+              <li><span class="bullet">▸</span> B.E. — EEE</li>
+              <li><span class="bullet">▸</span> 2022 – 2026</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="main-content">
+        <!-- Experience -->
+        <div class="section-card">
+          <div class="section-header">💼 Experience</div>
+          <div class="section-body">
+            <div class="exp-entry">
+              <div class="exp-title">Artificial Intelligence Engineer — PrudentBit</div>
+              <div class="exp-meta">
+                <span>Noida, Uttar Pradesh</span>
+                <span>May 2025 – Dec 2025</span>
+              </div>
+              <ul class="exp-desc">
+                <li>Led production-grade document redaction system for PDF, DOCX, images — reducing manual effort by 70% across 1,000+ docs</li>
+                <li>Built end-to-end document AI pipeline (OCR + PII detection + masking), 2x processing speed</li>
+                <li>Preprocessing pipeline improving OCR accuracy by 25–35%</li>
+                <li>Implemented TinyBERT-based reranking (100ms) improving search relevance</li>
+              </ul>
+            </div>
+            <div class="exp-entry">
+              <div class="exp-title">Freelance AI Engineer — Self-Employed</div>
+              <div class="exp-meta">
+                <span>Remote</span>
+                <span>May 2025 – Present</span>
+              </div>
+              <ul class="exp-desc">
+                <li><strong>ZapUp</strong> — AI Educational Platform: Full-stack with real-time chatbot, Next.js & Supabase</li>
+                <li><strong>TITTA</strong> — AI Construction Analysis: Production-grade RAG for PDFs and CAD (DWG/DXF)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="section-card">
+          <div class="section-header">📂 Projects</div>
+          <div class="section-body">
+            <div class="project-tiles">
+              <div class="project-tile">
+                <div class="tile-icon">📄</div>
+                <h4>AI Resume Parser & Job Matcher</h4>
+                <p>OCR + NER + LLM scoring, 1,000+ resumes, 40% recruiter effort reduction</p>
+                <span class="tile-tag">FastAPI</span>
+                <span class="tile-tag">PostgreSQL</span>
+              </div>
+              <div class="project-tile">
+                <div class="tile-icon">🎭</div>
+                <h4>Deepfake Detection System</h4>
+                <p>93% accuracy with VGG16 transfer learning on real vs synthetic datasets</p>
+                <span class="tile-tag">TensorFlow</span>
+              </div>
+              <div class="project-tile">
+                <div class="tile-icon">🏷️</div>
+                <h4>BERT NER System</h4>
+                <p>Token classification with HuggingFace Transformers and PyTorch</p>
+                <span class="tile-tag">Transformers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <div class="status-section">✅ Done</div>
+    <div class="status-section">🌐 Internet | 🔒 Protected Mode</div>
+  </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+  <button class="start-btn">
+    <span class="win-logo">⊞</span> start
+  </button>
+  <div class="taskbar-items">
+    <div class="taskbar-item active">🌐 Aaditya Barak — AI Engineer</div>
+    <div class="taskbar-item">📁 My Projects</div>
+  </div>
+  <div class="system-tray">
+    <span>🔊</span>
+    <span>🛡️</span>
+    <span>3:04 PM</span>
+  </div>
+</div>
+
+</body>
+</html>

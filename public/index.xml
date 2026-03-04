@@ -1,21 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Addy</title><link>https://addyb0t.github.io/</link><description>Recent content on Addy</description><generator>Hugo -- 0.145.0</generator><language>en-us</language><atom:link href="https://addyb0t.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>CV</title><link>https://addyb0t.github.io/cv/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://addyb0t.github.io/cv/</guid><description>&lt;p>My name is Aaditya Barak. I am a student of Electrical and Electronics Engineering at University Institute of Engineering and Technology, Chandigarh. I am a machine learning enthusiast and currently in third year of my undergraduate studies.&lt;/p>
-&lt;ul>
-&lt;li>Phone: +91-9896127290&lt;/li>
-&lt;li>Email: &lt;a href="mailto:aadityabarak472@gmail.com">aadityabarak472@gmail.com&lt;/a>&lt;/li>
-&lt;li>GitHub: &lt;a href="https://github.com/AddyB0t">https://github.com/AddyB0t&lt;/a>&lt;/li>
-&lt;li>X: &lt;a href="https://x.com/aadi29494">https://x.com/aadi29494&lt;/a>&lt;/li>
-&lt;li>Hugging Face: &lt;a href="https://huggingface.co/AddyB0t">https://huggingface.co/AddyB0t&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="technical-skills">&lt;strong>Technical Skills&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>Programming&lt;/strong>: Python, C, C++, MATLAB&lt;/li>
-&lt;li>&lt;strong>Machine Learning &amp;amp; AI&lt;/strong>: PyTorch, Hugging Face, OpenCV, CNN, NLP, FastAPI, LangChain, Model Fine-Tuning, StreamLit, RESTful API&amp;rsquo;s, WebSocket, Cursor, Claude Code, N8N&lt;/li>
-&lt;li>&lt;strong>IoT&lt;/strong>: Arduino, Raspberry Pi, ESP32, 8085 Microprocessor&lt;/li>
-&lt;li>&lt;strong>Tools&lt;/strong>: CX Programmer, NB Designer, P-Spice, Simulink, Cursor, Git/GitHub, Bash&lt;/li>
-&lt;/ul>
-&lt;h3 id="internshipfreelancing-experience">&lt;strong>Internship/Freelancing Experience&lt;/strong>&lt;/h3>
-&lt;h4 id="prudentbit-ai-intern">&lt;strong>PRUDENTBIT (AI Intern)&lt;/strong>&lt;/h4>
-&lt;p>&lt;strong>Duration:&lt;/strong> May 2025 - July 2025&lt;/p></description></item><item><title>What I learned while making my CV</title><link>https://addyb0t.github.io/posts/andrew-tate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://addyb0t.github.io/posts/andrew-tate/</guid><description>&lt;h1 id="how-to-create-an-effective-cv-a-comprehensive-guide">How to Create an Effective CV: A Comprehensive Guide&lt;/h1>
-&lt;p>Creating a compelling CV (Curriculum Vitae) is essential for making a strong first impression on potential employers. A well-crafted CV can significantly increase your chances of landing interviews and ultimately securing your desired position. In this post, I&amp;rsquo;ll share insights and strategies I learned while creating my own CV.&lt;/p>
-&lt;h2 id="understanding-the-purpose-of-a-cv">Understanding the Purpose of a CV&lt;/h2>
-&lt;p>Before diving into the creation process, it&amp;rsquo;s important to understand what a CV is meant to accomplish:&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Desktop on Addy</title>
+    <link>https://addyb0t.github.io/</link>
+    <description>Recent content in Desktop on Addy</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://addyb0t.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CV</title>
+      <link>https://addyb0t.github.io/cv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://addyb0t.github.io/cv/</guid>
+      <description>&lt;h2 id=&#34;aaditya-barak&#34;&gt;Aaditya Barak&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;AI Engineer — LLMs, RAG Systems, Document Intelligence&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Phone: +91 9896127290&lt;/li&gt;&#xA;&lt;li&gt;Email: &lt;a href=&#34;mailto:aadityabarak970@gmail.com&#34;&gt;aadityabarak970@gmail.com&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;LinkedIn: &lt;a href=&#34;https://linkedin.com/in/aaditya-barak&#34;&gt;linkedin.com/in/aaditya-barak&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;GitHub: &lt;a href=&#34;https://github.com/AddyB0t&#34;&gt;github.com/AddyB0t&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;technical-skills&#34;&gt;Technical Skills&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Languages:&lt;/strong&gt; Python, SQL, JavaScript&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;AI/ML:&lt;/strong&gt; PyTorch, Transformers, NLP, Computer Vision, OCR&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;LLM &amp;amp; GenAI:&lt;/strong&gt; LLMs, Prompt Engineering, RAG, LangChain&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Databases:&lt;/strong&gt; PostgreSQL, Supabase, Redis&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Tools:&lt;/strong&gt; Git, Linux&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;experience&#34;&gt;Experience&lt;/h3&gt;&#xA;&lt;h4 id=&#34;prudentbit--artificial-intelligence-engineer&#34;&gt;PrudentBit — Artificial Intelligence Engineer&lt;/h4&gt;&#xA;&lt;p&gt;&lt;strong&gt;May 2025 – December 2025 | Noida, Uttar Pradesh&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Led development of a &lt;strong&gt;production-grade document redaction system&lt;/strong&gt; for PDF, DOCX, images, reducing manual effort by &lt;strong&gt;70%&lt;/strong&gt; across &lt;strong&gt;1,000+ documents&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;Built an &lt;strong&gt;end-to-end document AI pipeline&lt;/strong&gt; (OCR + preprocessing + PII detection + masking), improving processing speed by &lt;strong&gt;2x&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;Designed preprocessing pipeline improving &lt;strong&gt;OCR accuracy by 25–35%&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;Developed &lt;strong&gt;PII detection system&lt;/strong&gt; with pixel-level masking while preserving layout&lt;/li&gt;&#xA;&lt;li&gt;Implemented &lt;strong&gt;TinyBERT-based reranking&lt;/strong&gt; (100ms) improving search relevance&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 id=&#34;freelance-ai-engineer--self-employed-client-projects&#34;&gt;Freelance AI Engineer — Self-Employed (Client Projects)&lt;/h4&gt;&#xA;&lt;p&gt;&lt;strong&gt;May 2025 – Present | Remote&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What I learned while making my CV</title>
+      <link>https://addyb0t.github.io/posts/andrew-tate/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://addyb0t.github.io/posts/andrew-tate/</guid>
+      <description>&lt;h1 id=&#34;how-to-create-an-effective-cv-a-comprehensive-guide&#34;&gt;How to Create an Effective CV: A Comprehensive Guide&lt;/h1&gt;&#xA;&lt;p&gt;Creating a compelling CV (Curriculum Vitae) is essential for making a strong first impression on potential employers. A well-crafted CV can significantly increase your chances of landing interviews and ultimately securing your desired position. In this post, I&amp;rsquo;ll share insights and strategies I learned while creating my own CV.&lt;/p&gt;&#xA;&lt;h2 id=&#34;understanding-the-purpose-of-a-cv&#34;&gt;Understanding the Purpose of a CV&lt;/h2&gt;&#xA;&lt;p&gt;Before diving into the creation process, it&amp;rsquo;s important to understand what a CV is meant to accomplish:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

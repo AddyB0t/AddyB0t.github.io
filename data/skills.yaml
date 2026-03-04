@@ -1,0 +1,18 @@
+- name: "Python"
+  percent: 95
+- name: "LLMs / GenAI"
+  percent: 92
+- name: "RAG / LangChain"
+  percent: 90
+- name: "PyTorch / ML"
+  percent: 88
+- name: "NLP / Transformers"
+  percent: 85
+- name: "CV / OCR"
+  percent: 80
+- name: "Git / Linux"
+  percent: 82
+- name: "PostgreSQL / Redis"
+  percent: 78
+- name: "JavaScript / SQL"
+  percent: 72

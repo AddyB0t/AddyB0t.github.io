@@ -1,0 +1,41 @@
+{{ define "main" }}
+<div class="w98-window open" id="win-list" style="top:20px;left:80px;width:750px;height:calc(100vh - 60px);">
+  <div class="w98-title" onmousedown="startDrag(event,'win-list')">
+    <div class="w98-title-left">
+      <span class="w98-title-icon">📁</span> {{ .Title }} — Explorer
+    </div>
+    <div class="w98-title-btns">
+      <button class="w98-btn" onclick="window.location.href='/'">_</button>
+      <button class="w98-btn" onclick="toggleMax('win-list')">&#9633;</button>
+      <button class="w98-btn" onclick="window.location.href='/'">✕</button>
+    </div>
+  </div>
+  <div class="w98-toolbar">
+    <button class="w98-tb-btn" onclick="window.location.href='/'">&#11013; Back</button>
+    <div class="w98-tb-sep"></div>
+    <button class="w98-tb-btn">📁 Folders</button>
+  </div>
+  <div class="w98-addr">
+    <span>Address:</span>
+    <input value="C:\Users\Addy\Documents\{{ .Title }}\" readonly>
+  </div>
+  <div class="w98-body" style="height:calc(100% - 90px);">
+    <table class="list-view">
+      <thead><tr><th>Name</th><th>Type</th><th>Date Modified</th></tr></thead>
+      <tbody>
+        {{ range .RegularPages }}
+        <tr ondblclick="window.location.href='{{ .Permalink }}'">
+          <td>📄 {{ .Title }}</td>
+          <td>Text Document</td>
+          <td>{{ with .Date }}{{ .Format "1/2/2006 3:04 PM" }}{{ end }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+  <div class="w98-status">
+    <div class="w98-status-sec">{{ len .RegularPages }} object(s)</div>
+    <div class="w98-status-sec">C:\Users\Addy\Documents\</div>
+  </div>
+</div>
+{{ end }}

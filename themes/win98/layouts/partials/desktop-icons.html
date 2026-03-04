@@ -1,0 +1,32 @@
+<div class="desk-icons">
+  <div class="dicon" ondblclick="openWin('portfolio')">
+    <div class="dicon-img">💻</div>
+    <div class="dicon-label">My Portfolio</div>
+  </div>
+  <div class="dicon" ondblclick="openWin('freelance')">
+    <div class="dicon-img">🚀</div>
+    <div class="dicon-label">Freelancing</div>
+  </div>
+  <div class="dicon" ondblclick="openWin('projects')">
+    <div class="dicon-img">📁</div>
+    <div class="dicon-label">My Projects</div>
+  </div>
+  <div class="dicon" ondblclick="openWin('blog')">
+    <div class="dicon-img">📝</div>
+    <div class="dicon-label">My Documents</div>
+  </div>
+  <div class="dicon" ondblclick="openWin('cv')">
+    <div class="dicon-img">📄</div>
+    <div class="dicon-label">My CV</div>
+  </div>
+  {{ range site.Data.profile.links }}{{ if .external }}
+  <div class="dicon" ondblclick="window.open('{{ .url }}','_blank')">
+    <div class="dicon-img">{{ .emoji }}</div>
+    <div class="dicon-label">{{ .label }}</div>
+  </div>
+  {{ end }}{{ end }}
+  <div class="dicon">
+    <div class="dicon-img">🗑️</div>
+    <div class="dicon-label">Recycle Bin</div>
+  </div>
+</div>

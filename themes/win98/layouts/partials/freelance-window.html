@@ -1,0 +1,40 @@
+<div class="w98-window" id="win-freelance" style="top:30px;left:140px;width:700px;height:500px;">
+  <div class="w98-title" onmousedown="startDrag(event,'win-freelance')">
+    <div class="w98-title-left">
+      <span class="w98-title-icon">🚀</span> Freelancing — Client Projects
+    </div>
+    <div class="w98-title-btns">
+      <button class="w98-btn" onclick="minimizeWin('freelance')">_</button>
+      <button class="w98-btn" onclick="toggleMax('win-freelance')">&#9633;</button>
+      <button class="w98-btn" onclick="closeWin('freelance')">✕</button>
+    </div>
+  </div>
+  <div class="w98-menu">
+    <span>File</span><span>Edit</span><span>View</span><span>Help</span>
+  </div>
+  <div class="w98-body" style="height:calc(100% - 44px);padding:8px;">
+    {{ range site.Data.freelance }}
+    <div class="freelance-card">
+      <div class="freelance-header">
+        <div class="freelance-name">{{ .icon }} {{ .name }}</div>
+      </div>
+      <div class="freelance-subtitle">{{ .title }}</div>
+      <div class="freelance-tech">{{ .tech }}</div>
+      <div class="freelance-links">
+        <a class="freelance-link primary" href="{{ .url }}" target="_blank">🌐 Visit Live Site</a>
+        {{ with .github }}<a class="freelance-link" href="{{ . }}" target="_blank">📂 GitHub</a>{{ end }}
+      </div>
+      <p style="font-size:12px;color:#444;margin-bottom:8px;">{{ .description }}</p>
+      <ul class="freelance-bullets">
+        {{ range .bullets }}
+        <li>{{ . }}</li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+  </div>
+  <div class="w98-status">
+    <div class="w98-status-sec">{{ len site.Data.freelance }} client project(s)</div>
+    <div class="w98-status-sec">C:\Users\Addy\Freelance\</div>
+  </div>
+</div>

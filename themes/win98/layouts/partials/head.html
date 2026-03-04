@@ -1,0 +1,10 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.profileMode.subtitle | default site.Title }}{{ end }}">
+<link rel="icon" href="{{ site.Params.assets.favicon | default "/images/profile.jpg" | absURL }}">
+{{- $css := resources.Get "css/win98.css" | resources.Minify }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{ if or .Params.math site.Params.math }}
+{{ partial "math.html" . }}
+{{ end }}

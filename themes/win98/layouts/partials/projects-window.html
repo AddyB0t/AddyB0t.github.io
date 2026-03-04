@@ -1,0 +1,38 @@
+<div class="w98-window" id="win-projects" style="top:20px;left:150px;width:750px;height:450px;">
+  <div class="w98-title" onmousedown="startDrag(event,'win-projects')">
+    <div class="w98-title-left">
+      <span class="w98-title-icon">📁</span> My Projects — Details View
+    </div>
+    <div class="w98-title-btns">
+      <button class="w98-btn" onclick="minimizeWin('projects')">_</button>
+      <button class="w98-btn" onclick="toggleMax('win-projects')">&#9633;</button>
+      <button class="w98-btn" onclick="closeWin('projects')">✕</button>
+    </div>
+  </div>
+  <div class="w98-body" style="height:calc(100% - 24px);margin:2px;">
+    <table class="list-view">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Tech</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range site.Data.projects }}
+        <tr ondblclick="window.open('{{ .url }}','_blank')">
+          <td>{{ .icon }} {{ .name }}</td>
+          <td>{{ .type }}</td>
+          <td>{{ .tech }}</td>
+          <td>{{ .full_description | default .description }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+  <div class="w98-status">
+    <div class="w98-status-sec">{{ len site.Data.projects }} object(s)</div>
+    <div class="w98-status-sec">C:\Users\Addy\Projects\</div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{{ with site.GetPage "/cv" }}
+<div class="w98-window" id="win-cv" style="top:15px;left:120px;width:780px;height:calc(100vh - 55px);">
+  <div class="w98-title" onmousedown="startDrag(event,'win-cv')">
+    <div class="w98-title-left">
+      <span class="w98-title-icon">📄</span> {{ .Title }} - WordPad
+    </div>
+    <div class="w98-title-btns">
+      <button class="w98-btn" onclick="minimizeWin('cv')">_</button>
+      <button class="w98-btn" onclick="toggleMax('win-cv')">&#9633;</button>
+      <button class="w98-btn" onclick="closeWin('cv')">✕</button>
+    </div>
+  </div>
+  <div class="w98-menu">
+    <span>File</span><span>Edit</span><span>View</span><span>Insert</span><span>Format</span><span>Help</span>
+  </div>
+  <div class="w98-toolbar">
+    <button class="w98-tb-btn">📄 New</button>
+    <div class="w98-tb-sep"></div>
+    <button class="w98-tb-btn">💾 Save</button>
+    <button class="w98-tb-btn">🖨️ Print</button>
+  </div>
+  <div class="w98-body" style="height:calc(100% - 80px);">
+    <div class="notepad-content">
+      {{ .Content }}
+    </div>
+  </div>
+  <div class="w98-status">
+    <div class="w98-status-sec">{{ .WordCount }} words</div>
+    <div class="w98-status-sec">C:\Users\Addy\Documents\CV.doc</div>
+  </div>
+</div>
+{{ end }}

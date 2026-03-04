@@ -1,0 +1,10 @@
+- role: "Artificial Intelligence Engineer"
+  company: "PRUDENTBIT"
+  location: "Noida, UP"
+  period: "May 2025 – Dec 2025"
+  bullets:
+    - "Led <b>production-grade document redaction</b> for PDF, DOCX, images — <b>70%</b> effort reduction, <b>1,000+ docs</b>"
+    - "Built <b>end-to-end AI pipeline</b> (OCR + PII detection + masking) — <b>2x</b> processing speed"
+    - "Preprocessing pipeline improving <b>OCR accuracy 25–35%</b>"
+    - "<b>PII detection</b> with pixel-level masking, layout preserved"
+    - "<b>TinyBERT reranking</b> (100ms) improving search relevance"

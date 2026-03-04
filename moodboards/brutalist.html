@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Addy — Brutalist / Editorial Theme</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: #f5f0e8;
+    color: #1a1a1a;
+    min-height: 100vh;
+  }
+
+  /* === GIANT HEADER === */
+  .mega-header {
+    background: #1a1a1a;
+    color: #f5f0e8;
+    padding: 30px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mega-header::after {
+    content: 'AI';
+    position: absolute;
+    right: -20px;
+    top: -30px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 300px;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #888;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+  }
+
+  .mega-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 120px;
+    line-height: 0.9;
+    letter-spacing: -3px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .mega-name .outline {
+    -webkit-text-stroke: 2px #f5f0e8;
+    color: transparent;
+  }
+
+  .mega-tagline {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    color: #ff3333;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .mega-contact {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: #999;
+  }
+
+  .mega-contact a {
+    color: #999;
+    text-decoration: none;
+    border-bottom: 1px solid #444;
+    transition: all 0.2s;
+  }
+
+  .mega-contact a:hover {
+    color: #ff3333;
+    border-color: #ff3333;
+  }
+
+  /* === NAV === */
+  .brutal-nav {
+    background: #ff3333;
+    padding: 0;
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .brutal-nav a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 24px;
+    letter-spacing: 2px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .brutal-nav a:hover {
+    background: #1a1a1a;
+  }
+
+  /* === MAIN GRID === */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* === SECTION === */
+  .brutal-section {
+    padding: 30px;
+    border-bottom: 3px solid #1a1a1a;
+    border-right: 3px solid #1a1a1a;
+    position: relative;
+  }
+
+  .brutal-section:nth-child(even) {
+    border-right: none;
+  }
+
+  .brutal-section.full-width {
+    grid-column: 1 / -1;
+    border-right: none;
+  }
+
+  .brutal-section.dark {
+    background: #1a1a1a;
+    color: #f5f0e8;
+  }
+
+  .brutal-section.accent {
+    background: #ff3333;
+    color: #fff;
+  }
+
+  .section-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: rgba(0,0,0,0.06);
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    line-height: 1;
+  }
+
+  .dark .section-num {
+    color: rgba(255,255,255,0.05);
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ff3333;
+    margin-bottom: 4px;
+  }
+
+  .dark .section-label {
+    color: #ff3333;
+  }
+
+  .accent .section-label {
+    color: #1a1a1a;
+  }
+
+  .section-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  /* === EXPERIENCE ENTRIES === */
+  .exp-block {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .dark .exp-block {
+    border-bottom-color: #333;
+  }
+
+  .exp-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .exp-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .exp-company {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #ff3333;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .exp-location {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .dark .exp-location {
+    color: #666;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .exp-bullets li {
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 3px 0 3px 16px;
+    position: relative;
+    color: #444;
+  }
+
+  .dark .exp-bullets li {
+    color: #bbb;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #ff3333;
+    font-weight: 700;
+  }
+
+  /* === SKILL BLOCKS === */
+  .skill-row {
+    display: flex;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .skill-cat {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    min-width: 120px;
+    color: #ff3333;
+  }
+
+  .accent .skill-cat {
+    color: #1a1a1a;
+  }
+
+  .skill-items {
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .accent .skill-items {
+    font-weight: 400;
+  }
+
+  /* === PROJECT CARDS === */
+  .project-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .proj-card {
+    border: 2px solid #1a1a1a;
+    padding: 16px;
+    position: relative;
+    transition: all 0.2s;
+    background: #f5f0e8;
+  }
+
+  .proj-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0 #1a1a1a;
+  }
+
+  .proj-card h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .proj-card .proj-tech {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #ff3333;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .proj-card p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* === EDUCATION === */
+  .edu-block {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .edu-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: #ff3333;
+    line-height: 1;
+    min-width: 80px;
+  }
+
+  .dark .edu-year {
+    color: #ff3333;
+  }
+
+  .edu-details h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .edu-details p {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.5;
+  }
+
+  .dark .edu-details p {
+    color: #888;
+  }
+
+  /* === FOOTER === */
+  .brutal-footer {
+    background: #1a1a1a;
+    color: #888;
+    text-align: center;
+    padding: 30px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    border-top: 4px solid #ff3333;
+  }
+
+  @media (max-width: 768px) {
+    .mega-name { font-size: 60px; }
+    .main-grid { grid-template-columns: 1fr; }
+    .brutal-section { border-right: none !important; }
+    .mega-header { padding: 20px; }
+    .section-heading { font-size: 32px; }
+    .edu-block { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Mega Header -->
+<header class="mega-header">
+  <div class="header-top">
+    <span>PORTFOLIO / 2026</span>
+    <span>ISSUE NO. 01</span>
+  </div>
+  <div class="mega-name">
+    AADITYA<br>
+    <span class="outline">BARAK</span>
+  </div>
+  <div class="mega-tagline">AI Engineer — LLMs, RAG Systems, Document Intelligence</div>
+  <div class="mega-contact">
+    <a href="#">aadityabarak970@gmail.com</a>
+    <a href="#">linkedin.com/in/aaditya-barak</a>
+    <a href="#">github.com/AddyB0t</a>
+    <span>+91 9896127290</span>
+  </div>
+</header>
+
+<!-- Nav -->
+<nav class="brutal-nav">
+  <a href="#">HOME</a>
+  <a href="#">EXPERIENCE</a>
+  <a href="#">PROJECTS</a>
+  <a href="#">SKILLS</a>
+  <a href="#">BLOG</a>
+  <a href="#">CV</a>
+  <a href="#">CONTACT</a>
+</nav>
+
+<!-- Main Content Grid -->
+<div class="main-grid">
+
+  <!-- Experience -->
+  <div class="brutal-section full-width">
+    <span class="section-num">01</span>
+    <div class="section-label">Career</div>
+    <div class="section-heading">EXPERIENCE</div>
+
+    <div class="exp-block">
+      <div class="exp-role">Artificial Intelligence Engineer</div>
+      <div class="exp-company">PRUDENTBIT</div>
+      <div class="exp-location">
+        <span>Noida, Uttar Pradesh</span>
+        <span>May 2025 – December 2025</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Led development of a production-grade document redaction system for PDF, DOCX, images, reducing manual effort by 70% across 1,000+ documents</li>
+        <li>Built an end-to-end document AI pipeline (OCR + preprocessing + PII detection + masking), improving processing speed by 2x</li>
+        <li>Designed preprocessing pipeline improving OCR accuracy by 25–35%</li>
+        <li>Developed PII detection system with pixel-level masking while preserving layout</li>
+        <li>Implemented TinyBERT-based reranking (100ms) improving search relevance</li>
+      </ul>
+    </div>
+
+    <div class="exp-block">
+      <div class="exp-role">Freelance AI Engineer</div>
+      <div class="exp-company">SELF-EMPLOYED (CLIENT PROJECTS)</div>
+      <div class="exp-location">
+        <span>Remote</span>
+        <span>May 2025 – Present</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>ZapUp — AI Educational Platform: Full-stack platform with real-time chatbot, personalization, and scalable backend using Next.js and Supabase</li>
+        <li>Implemented context-aware LLM assistant with conversation memory and dynamic filtering</li>
+        <li>TITTA — AI Construction Analysis System: Built production-grade RAG system for querying PDFs and CAD (DWG/DXF)</li>
+        <li>Implemented vector search using BGE-large embeddings with Supabase vector storage</li>
+        <li>Designed DWG/DXF metadata extraction pipeline with structured storage in PostgreSQL</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Projects -->
+  <div class="brutal-section">
+    <span class="section-num">02</span>
+    <div class="section-label">Work</div>
+    <div class="section-heading">PROJECTS</div>
+    <div class="project-stack">
+      <div class="proj-card">
+        <h4>AI Resume Parser & Job Matcher</h4>
+        <div class="proj-tech">FASTAPI / POSTGRESQL / NOV 2025</div>
+        <p>Built AI system using OCR + NER + LLM scoring processing 1,000+ resumes. Multi-criteria ranking reducing recruiter effort by 40%.</p>
+      </div>
+      <div class="proj-card">
+        <h4>Deepfake Detection System</h4>
+        <div class="proj-tech">TENSORFLOW / APR 2025</div>
+        <p>Achieved 93% accuracy using VGG16 transfer learning. Evaluated performance across real vs synthetic datasets.</p>
+      </div>
+      <div class="proj-card">
+        <h4>BERT NER System</h4>
+        <div class="proj-tech">TRANSFORMERS / PYTORCH / JUL 2025</div>
+        <p>Token classification model using HuggingFace Transformers. Fine-tuned for improved performance.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <div class="brutal-section accent">
+    <span class="section-num">03</span>
+    <div class="section-label">Arsenal</div>
+    <div class="section-heading">SKILLS</div>
+    <div class="skill-row">
+      <span class="skill-cat">Languages</span>
+      <span class="skill-items">Python, SQL, JavaScript</span>
+    </div>
+    <div class="skill-row">
+      <span class="skill-cat">AI / ML</span>
+      <span class="skill-items">PyTorch, Transformers, NLP, Computer Vision, OCR</span>
+    </div>
+    <div class="skill-row">
+      <span class="skill-cat">LLM & GenAI</span>
+      <span class="skill-items">LLMs, Prompt Engineering, RAG, LangChain</span>
+    </div>
+    <div class="skill-row">
+      <span class="skill-cat">Databases</span>
+      <span class="skill-items">PostgreSQL, Supabase, Redis</span>
+    </div>
+    <div class="skill-row" style="border-bottom:none">
+      <span class="skill-cat">Tools</span>
+      <span class="skill-items">Git, Linux</span>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="brutal-section dark full-width">
+    <span class="section-num">04</span>
+    <div class="section-label">Education</div>
+    <div class="section-heading">EDUCATION</div>
+    <div class="edu-block">
+      <div class="edu-year">2026</div>
+      <div class="edu-details">
+        <h3>UIET, Panjab University</h3>
+        <p>Bachelor of Engineering — Electrical & Electronics Engineering<br>
+        Sep 2022 – May 2026 | Chandigarh, India<br><br>
+        Open Source Contributor & Mentor — Contributed to ML/NLP repositories and mentored developers on APIs and deployment.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="brutal-footer">
+  AADITYA BARAK &mdash; PORTFOLIO 2026 &mdash; ALL RIGHTS RESERVED
+</footer>
+
+</body>
+</html>

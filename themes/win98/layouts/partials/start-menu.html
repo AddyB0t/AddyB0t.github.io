@@ -1,0 +1,20 @@
+<div class="startmenu98" id="startMenu98">
+  <div class="sm98-sidebar"><span>Windows98</span></div>
+  <div class="sm98-items">
+    {{ if .IsHome }}
+    <div class="sm98-item" onclick="openWin('portfolio');closeStart()"><span class="sm98i">💻</span> My Portfolio</div>
+    <div class="sm98-item" onclick="openWin('freelance');closeStart()"><span class="sm98i">🚀</span> Freelancing</div>
+    <div class="sm98-item" onclick="openWin('projects');closeStart()"><span class="sm98i">📁</span> My Projects</div>
+    <div class="sm98-item" onclick="openWin('blog');closeStart()"><span class="sm98i">📝</span> My Documents</div>
+    <div class="sm98-item" onclick="openWin('cv');closeStart()"><span class="sm98i">📄</span> My CV</div>
+    {{ else }}
+    <a class="sm98-item" href="/"><span class="sm98i">💻</span> Desktop</a>
+    {{ end }}
+    <div class="sm98-sep"></div>
+    {{ range site.Data.profile.links }}{{ if .external }}
+    <a class="sm98-item" href="{{ .url }}" target="_blank"><span class="sm98i">{{ .emoji }}</span> {{ .label }}</a>
+    {{ end }}{{ end }}
+    <div class="sm98-sep"></div>
+    <div class="sm98-item" onclick="closeStart()"><span class="sm98i">🔴</span> Shut Down...</div>
+  </div>
+</div>

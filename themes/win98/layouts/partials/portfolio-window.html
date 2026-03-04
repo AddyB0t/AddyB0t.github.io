@@ -1,0 +1,150 @@
+<div class="w98-window open" id="win-portfolio" style="top:8px;left:100px;width:820px;height:calc(100vh - 50px);">
+  <div class="w98-title" onmousedown="startDrag(event,'win-portfolio')">
+    <div class="w98-title-left">
+      <span class="w98-title-icon">💻</span> {{ site.Data.profile.name }} — Portfolio
+    </div>
+    <div class="w98-title-btns">
+      <button class="w98-btn" onclick="minimizeWin('portfolio')">_</button>
+      <button class="w98-btn" onclick="toggleMax('win-portfolio')">&#9633;</button>
+      <button class="w98-btn" onclick="closeWin('portfolio')">✕</button>
+    </div>
+  </div>
+  <div class="w98-menu">
+    <span>File</span><span>Edit</span><span>View</span><span>Go</span><span>Favorites</span><span>Help</span>
+  </div>
+  <div class="w98-toolbar">
+    <button class="w98-tb-btn" onclick="scrollTo98('top98')">&#11013; Back</button>
+    <div class="w98-tb-sep"></div>
+    <button class="w98-tb-btn">📁 Folders</button>
+    <button class="w98-tb-btn" onclick="scrollTo98('sec-contact')">🔍 Search</button>
+  </div>
+  <div class="w98-addr">
+    <span>Address:</span>
+    <input value="C:\Users\Addy\Portfolio\" readonly>
+  </div>
+
+  <div class="w98-body" id="mainBody" style="height:calc(100% - 100px);">
+    <div class="w98-explorer">
+      <!-- Tree -->
+      <div class="w98-tree">
+        <div class="tree-item ti-open" onclick="scrollTo98('top98')">Desktop</div>
+        <div class="tree-child">
+          <div class="tree-item ti-open" onclick="scrollTo98('top98')">My Portfolio</div>
+          <div class="tree-child">
+            <div class="tree-item" onclick="scrollTo98('sec-exp')">Experience</div>
+            <div class="tree-item" onclick="scrollTo98('sec-proj')">Projects</div>
+            <div class="tree-item" onclick="scrollTo98('sec-skills')">Skills</div>
+            <div class="tree-item" onclick="scrollTo98('sec-edu')">Education</div>
+            <div class="tree-item" onclick="scrollTo98('sec-contact')">Contact</div>
+          </div>
+          <div class="tree-item" onclick="openWin('freelance')">🚀 Freelancing</div>
+          <div class="tree-item" onclick="openWin('projects')">My Projects</div>
+          <div class="tree-item" onclick="openWin('blog')">📝 My Documents</div>
+          <div class="tree-item" onclick="openWin('cv')">📄 My CV</div>
+        </div>
+        <div class="tree-child">
+          {{ range site.Data.profile.links }}{{ if .external }}
+          <div class="tree-item" onclick="window.open('{{ .url }}','_blank')">{{ .emoji }} {{ .label }}</div>
+          {{ end }}{{ end }}
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="w98-filelist" id="fileList">
+        <!-- Profile -->
+        <div class="profile-98" id="top98">
+          <div class="profile-photo">
+            <img src="{{ site.Data.profile.photo }}" alt="{{ site.Data.profile.name }}">
+          </div>
+          <div class="profile-text">
+            <h1>{{ site.Data.profile.name }}</h1>
+            <div class="p-tag">{{ site.Data.profile.tagline }}</div>
+            <div class="profile-links-98">
+              {{ range site.Data.profile.links }}
+              <a class="p-link" href="{{ .url }}"{{ if .external }} target="_blank"{{ end }}>{{ .emoji }} {{ .label }}</a>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="w98-group" id="sec-exp">
+          <legend>💼 Experience</legend>
+          {{ range site.Data.experience }}
+          <div class="exp98">
+            <div class="exp98-role">{{ .role }}</div>
+            <div class="exp98-co">{{ .company }}</div>
+            <div class="exp98-meta"><span>{{ .location }}</span><span>{{ .period }}</span></div>
+            <ul class="exp98-list">
+              {{ range .bullets }}
+              <li>{{ . | safeHTML }}</li>
+              {{ end }}
+            </ul>
+          </div>
+          {{ end }}
+        </div>
+
+        <!-- Projects grid -->
+        <div class="w98-group" id="sec-proj">
+          <legend>📂 Projects</legend>
+          <div class="file-grid">
+            {{ range site.Data.projects }}
+            <a class="file-tile" href="{{ .url }}" target="_blank">
+              <span class="ft-icon">{{ .icon }}</span>
+              <span class="ft-name">{{ .name }}</span>
+              <span class="ft-desc">{{ .description }}</span>
+            </a>
+            {{ end }}
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="w98-group" id="sec-skills">
+          <legend>🛠️ Technical Skills</legend>
+          {{ range site.Data.skills }}
+          <div class="sk98">
+            <span class="sk98-name">{{ .name }}</span>
+            <div class="sk98-bar"><div class="sk98-fill" style="width:{{ .percent }}%"></div></div>
+            <span class="sk98-pct">{{ .percent }}%</span>
+          </div>
+          {{ end }}
+        </div>
+
+        <!-- Education -->
+        <div class="w98-group" id="sec-edu">
+          <legend>🎓 Education</legend>
+          {{ range site.Data.education }}
+          <div style="display:flex;gap:12px;align-items:center;">
+            <span style="font-size:32px;">🎓</span>
+            <div>
+              <div style="font-weight:bold;color:var(--win-navy);">{{ .institution }}</div>
+              <div style="font-size:12px;">{{ .degree }}</div>
+              <div style="font-size:11px;color:#666;">{{ .period }} | {{ .location }}</div>
+              {{ with .note }}<div style="font-size:11px;color:#666;">{{ . }}</div>{{ end }}
+            </div>
+          </div>
+          {{ end }}
+        </div>
+
+        <!-- Contact -->
+        <div class="w98-group" id="sec-contact">
+          <legend>📞 Contact</legend>
+          <div class="contact98">
+            {{ range site.Data.profile.links }}
+            <a class="c98-item" href="{{ .url }}"{{ if .external }} target="_blank"{{ end }}>
+              <span class="c98i">{{ .emoji }}</span>
+              <div><b>{{ .label }}</b><br><small>{{ .detail }}</small></div>
+            </a>
+            {{ end }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="w98-status">
+    <div class="w98-status-sec">{{ len site.Data.projects }} project(s)</div>
+    <div class="w98-status-sec">C:\Users\Addy\</div>
+  </div>
+</div>

@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aaditya Barak — Portfolio [Windows 98]</title>
+<style>
+  /* === WINDOWS 95/98 AUTHENTIC STYLING === */
+  @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --win-bg: #008080;
+    --win-grey: #c0c0c0;
+    --win-dark: #808080;
+    --win-light: #dfdfdf;
+    --win-white: #ffffff;
+    --win-black: #000000;
+    --win-navy: #000080;
+    --win-blue: #0000aa;
+    --win-highlight: #000080;
+    --win-text: #000000;
+    --border-raised: inset -1px -1px 0 #000, inset -2px -2px 0 var(--win-dark), inset 1px 1px 0 var(--win-white), inset 2px 2px 0 var(--win-light);
+    --border-sunken: inset 1px 1px 0 #000, inset 2px 2px 0 var(--win-dark), inset -1px -1px 0 var(--win-white), inset -2px -2px 0 var(--win-light);
+    --border-button: inset -1px -1px 0 #000, inset -2px -2px 0 var(--win-dark), inset 1px 1px 0 var(--win-white), inset 2px 2px 0 var(--win-light);
+    --border-pressed: inset 1px 1px 0 #000, inset 2px 2px 0 var(--win-dark), inset -1px -1px 0 var(--win-white);
+  }
+
+  body {
+    font-family: 'Pixelify Sans', 'MS Sans Serif', 'Microsoft Sans Serif', 'Tahoma', Arial, sans-serif;
+    background: var(--win-bg);
+    min-height: 100vh;
+    cursor: default;
+    user-select: none;
+    overflow: hidden;
+    font-size: 13px;
+    color: var(--win-text);
+  }
+
+  /* === DESKTOP === */
+  .desktop {
+    width: 100vw;
+    height: calc(100vh - 28px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* === DESKTOP ICONS === */
+  .desk-icons {
+    position: absolute;
+    top: 8px; left: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 1;
+  }
+
+  .dicon {
+    width: 70px;
+    padding: 4px 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .dicon:hover .dicon-label {
+    background: var(--win-navy);
+    color: #fff;
+  }
+
+  .dicon-img {
+    width: 32px; height: 32px;
+    image-rendering: pixelated;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.5));
+  }
+
+  .dicon-label {
+    font-size: 11px;
+    color: #fff;
+    text-shadow: 1px 1px 0 #000;
+    padding: 0 2px;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  /* === WIN98 WINDOW === */
+  .w98-window {
+    position: absolute;
+    background: var(--win-grey);
+    box-shadow: var(--border-raised);
+    display: none;
+    min-width: 300px;
+  }
+
+  .w98-window.open { display: block; }
+
+  .w98-window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Title bar */
+  .w98-title {
+    background: linear-gradient(90deg, var(--win-navy) 0%, #1084d0 100%);
+    color: #fff;
+    padding: 2px 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: default;
+  }
+
+  .w98-title.inactive {
+    background: linear-gradient(90deg, #808080 0%, #b0b0b0 100%);
+  }
+
+  .w98-title-left {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .w98-title-icon { font-size: 14px; }
+
+  .w98-title-btns { display: flex; gap: 1px; flex-shrink: 0; }
+
+  .w98-btn {
+    width: 16px; height: 14px;
+    background: var(--win-grey);
+    box-shadow: var(--border-button);
+    border: none;
+    font-size: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Marlett', sans-serif;
+    color: #000;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .w98-btn:active { box-shadow: var(--border-pressed); }
+
+  /* Menu bar */
+  .w98-menu {
+    background: var(--win-grey);
+    padding: 1px 0;
+    display: flex;
+    border-bottom: 1px solid var(--win-dark);
+  }
+
+  .w98-menu span {
+    padding: 1px 8px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .w98-menu span:hover {
+    background: var(--win-navy);
+    color: #fff;
+  }
+
+  /* Toolbar */
+  .w98-toolbar {
+    background: var(--win-grey);
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    border-bottom: 1px solid var(--win-dark);
+    border-top: 1px solid var(--win-white);
+  }
+
+  .w98-tb-btn {
+    background: var(--win-grey);
+    box-shadow: var(--border-button);
+    border: none;
+    padding: 1px 6px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .w98-tb-btn:active { box-shadow: var(--border-pressed); }
+
+  .w98-tb-sep {
+    width: 2px;
+    height: 20px;
+    border-left: 1px solid var(--win-dark);
+    border-right: 1px solid var(--win-white);
+    margin: 0 2px;
+  }
+
+  /* Address bar */
+  .w98-addr {
+    background: var(--win-grey);
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    border-bottom: 1px solid var(--win-dark);
+  }
+
+  .w98-addr input {
+    flex: 1;
+    background: #fff;
+    border: none;
+    box-shadow: var(--border-sunken);
+    padding: 2px 4px;
+    font-size: 11px;
+    font-family: inherit;
+  }
+
+  /* Window body */
+  .w98-body {
+    background: #fff;
+    box-shadow: var(--border-sunken);
+    margin: 2px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Status bar */
+  .w98-status {
+    background: var(--win-grey);
+    padding: 1px 2px;
+    display: flex;
+    gap: 2px;
+    font-size: 11px;
+    border-top: 1px solid var(--win-white);
+  }
+
+  .w98-status-sec {
+    box-shadow: var(--border-sunken);
+    padding: 0 4px;
+    flex: 1;
+  }
+
+  .w98-status-sec:last-child { flex: 0; min-width: 100px; }
+
+  /* === EXPLORER LAYOUT === */
+  .w98-explorer {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    height: 100%;
+  }
+
+  .w98-tree {
+    background: #fff;
+    border-right: 1px solid var(--win-dark);
+    padding: 4px;
+    overflow-y: auto;
+    font-size: 12px;
+  }
+
+  .tree-item {
+    padding: 1px 2px 1px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .tree-item:hover { background: var(--win-navy); color: #fff; }
+
+  .tree-item::before {
+    content: '📁';
+    font-size: 12px;
+  }
+
+  .tree-item.ti-open::before { content: '📂'; }
+
+  .tree-child {
+    padding-left: 12px;
+    border-left: 1px dotted #999;
+    margin-left: 8px;
+  }
+
+  .w98-filelist {
+    background: #fff;
+    padding: 8px;
+    overflow-y: auto;
+  }
+
+  /* === PROFILE CARD === */
+  .profile-98 {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 12px;
+    border-bottom: 2px groove var(--win-grey);
+    margin-bottom: 8px;
+  }
+
+  .profile-photo {
+    width: 80px; height: 80px;
+    box-shadow: var(--border-sunken);
+    background: #c0c0c0;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .profile-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    image-rendering: auto;
+  }
+
+  .profile-text h1 {
+    font-size: 18px;
+    color: var(--win-navy);
+    margin-bottom: 2px;
+  }
+
+  .profile-text .p-tag {
+    font-size: 12px;
+    color: #444;
+    margin-bottom: 6px;
+  }
+
+  .profile-links-98 {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .p-link {
+    background: var(--win-grey);
+    box-shadow: var(--border-button);
+    padding: 2px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .p-link:active { box-shadow: var(--border-pressed); }
+
+  /* === GROUP BOX (Win98 fieldset) === */
+  .w98-group {
+    border: 2px groove var(--win-grey);
+    padding: 10px 8px 8px;
+    margin: 8px;
+    position: relative;
+  }
+
+  .w98-group legend {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--win-navy);
+    padding: 0 4px;
+    background: #fff;
+  }
+
+  /* === EXPERIENCE === */
+  .exp98 {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .exp98:last-child { border-bottom: none; }
+
+  .exp98-role { font-weight: bold; color: var(--win-navy); font-size: 13px; }
+  .exp98-co { font-size: 12px; color: #cc0000; font-weight: bold; }
+
+  .exp98-meta {
+    font-size: 11px; color: #666;
+    display: flex; justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .exp98-list { list-style: none; padding: 0; }
+
+  .exp98-list li {
+    font-size: 12px; line-height: 1.5;
+    padding: 1px 0 1px 14px;
+    position: relative;
+  }
+
+  .exp98-list li::before {
+    content: '■'; position: absolute; left: 0;
+    color: var(--win-navy); font-size: 6px; top: 5px;
+  }
+
+  /* === FILE TILES (Projects) === */
+  .file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 4px;
+    padding: 4px;
+  }
+
+  .file-tile {
+    padding: 8px 4px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .file-tile:hover {
+    background: var(--win-navy);
+    color: #fff;
+  }
+
+  .file-tile:hover .ft-desc { color: #ddd; }
+
+  .file-tile .ft-icon {
+    font-size: 32px;
+    image-rendering: pixelated;
+  }
+
+  .file-tile .ft-name {
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  .file-tile .ft-desc {
+    font-size: 9px;
+    color: #666;
+    line-height: 1.2;
+  }
+
+  /* === LIST VIEW (Detail) === */
+  .list-view {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+
+  .list-view th {
+    background: var(--win-grey);
+    box-shadow: var(--border-button);
+    padding: 2px 8px;
+    text-align: left;
+    font-weight: normal;
+    cursor: pointer;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+  .list-view td {
+    padding: 1px 8px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .list-view tr:hover td { background: var(--win-navy); color: #fff; }
+  .list-view tr:hover a { color: #fff; }
+
+  .list-view a {
+    color: var(--win-navy);
+    text-decoration: underline;
+  }
+
+  /* === SKILLS (Progress bars 98 style) === */
+  .sk98 {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 5px;
+  }
+
+  .sk98-name { font-size: 12px; min-width: 110px; }
+
+  .sk98-bar {
+    flex: 1; height: 16px;
+    background: #fff;
+    box-shadow: var(--border-sunken);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .sk98-fill {
+    height: 100%;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--win-navy) 0px,
+      var(--win-navy) 8px,
+      var(--win-highlight) 8px,
+      var(--win-highlight) 10px
+    );
+    transition: width 1.5s ease;
+  }
+
+  .sk98-pct {
+    font-size: 10px;
+    min-width: 30px;
+    text-align: right;
+  }
+
+  /* === TAB CONTROL === */
+  .w98-tabs {
+    margin: 8px;
+  }
+
+  .tab-headers {
+    display: flex;
+    gap: 0;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .tab-hdr {
+    background: var(--win-grey);
+    padding: 3px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid var(--win-dark);
+    border-bottom: 1px solid var(--win-grey);
+    border-radius: 3px 3px 0 0;
+    position: relative;
+    top: 1px;
+  }
+
+  .tab-hdr.active {
+    background: var(--win-grey);
+    border-bottom-color: var(--win-grey);
+    z-index: 3;
+    font-weight: bold;
+  }
+
+  .tab-hdr:not(.active) {
+    background: #b0b0b0;
+    border-bottom: 1px solid var(--win-dark);
+    top: 2px;
+  }
+
+  .tab-body {
+    border: 1px solid var(--win-dark);
+    background: var(--win-grey);
+    padding: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* === CONTACT (win98 form) === */
+  .contact98 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .c98-item {
+    background: var(--win-grey);
+    box-shadow: var(--border-button);
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    font-size: 12px;
+  }
+
+  .c98-item:active { box-shadow: var(--border-pressed); }
+  .c98-item:hover { background: #d0d0d0; }
+  .c98-item .c98i { font-size: 20px; }
+
+  /* === TASKBAR === */
+  .taskbar98 {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 28px;
+    background: var(--win-grey);
+    box-shadow: inset 0 1px 0 var(--win-white);
+    display: flex;
+    align-items: center;
+    padding: 2px 2px;
+    z-index: 10000;
+  }
+
+  .start98 {
+    background: var(--win-grey);
+    box-shadow: var(--border-button);
+    border: none;
+    padding: 1px 6px;
+    height: 22px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-family: inherit;
+  }
+
+  .start98:active { box-shadow: var(--border-pressed); }
+
+  .start98 img, .start98 .s-logo {
+    width: 16px; height: 16px;
+    font-size: 14px;
+  }
+
+  .tb98-items {
+    display: flex;
+    gap: 2px;
+    margin-left: 4px;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .tb98-item {
+    background: var(--win-grey);
+    box-shadow: var(--border-button);
+    padding: 1px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .tb98-item.pressed {
+    box-shadow: var(--border-pressed);
+    font-weight: bold;
+  }
+
+  .tray98 {
+    box-shadow: var(--border-sunken);
+    padding: 1px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    height: 22px;
+    margin-left: auto;
+  }
+
+  /* === START MENU === */
+  .startmenu98 {
+    position: fixed;
+    bottom: 28px; left: 0;
+    width: 220px;
+    background: var(--win-grey);
+    box-shadow: var(--border-raised);
+    z-index: 10001;
+    display: none;
+  }
+
+  .startmenu98.open { display: block; }
+
+  .sm98-sidebar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 24px;
+    background: linear-gradient(180deg, var(--win-navy) 0%, #000 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 4px;
+  }
+
+  .sm98-sidebar span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: #c0c0c0;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 3px;
+  }
+
+  .sm98-items {
+    margin-left: 24px;
+    padding: 2px 0;
+  }
+
+  .sm98-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+  }
+
+  .sm98-item:hover {
+    background: var(--win-navy);
+    color: #fff;
+  }
+
+  .sm98-item .sm98i { font-size: 20px; width: 24px; text-align: center; }
+
+  .sm98-sep {
+    height: 1px;
+    background: var(--win-dark);
+    margin: 2px 24px 2px 36px;
+    border-bottom: 1px solid var(--win-white);
+  }
+
+  /* === DIALOG BOX === */
+  .dialog98 {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--win-grey);
+    box-shadow: var(--border-raised);
+    z-index: 9999;
+    min-width: 320px;
+    display: none;
+  }
+
+  .dialog98.open { display: block; }
+
+  .dialog98 .w98-title { cursor: default; }
+
+  .dialog-body {
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .dialog-icon { font-size: 36px; flex-shrink: 0; }
+
+  .dialog-text {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .dialog-btns {
+    padding: 0 16px 12px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .dialog-btn {
+    background: var(--win-grey);
+    box-shadow: var(--border-button);
+    border: none;
+    padding: 3px 20px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    min-width: 75px;
+  }
+
+  .dialog-btn:active { box-shadow: var(--border-pressed); }
+  .dialog-btn:focus { outline: 1px dotted #000; outline-offset: -4px; }
+
+  /* === BOOT === */
+  .boot98 {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #000;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    animation: bootOff 0.3s ease 3.5s forwards;
+  }
+
+  @keyframes bootOff { to { opacity: 0; pointer-events: none; } }
+
+  .boot98-logo {
+    color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    animation: bootFlicker 0.5s ease 3 alternate;
+  }
+
+  @keyframes bootFlicker {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+
+  .boot98-bar {
+    width: 200px; height: 20px;
+    background: var(--win-grey);
+    box-shadow: var(--border-sunken);
+    overflow: hidden;
+  }
+
+  .boot98-fill {
+    height: 100%;
+    width: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--win-navy) 0px,
+      var(--win-navy) 12px,
+      var(--win-grey) 12px,
+      var(--win-grey) 14px
+    );
+    animation: bootBar 3s linear forwards;
+  }
+
+  @keyframes bootBar { to { width: 100%; } }
+
+  .boot98-text {
+    color: #aaa;
+    font-size: 12px;
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .desk-icons { display: none; }
+    .w98-explorer { grid-template-columns: 1fr; }
+    .w98-tree { display: none; }
+    .w98-window { left: 0 !important; top: 0 !important; width: 100% !important; height: calc(100vh - 28px) !important; }
+    .profile-98 { flex-direction: column; align-items: center; text-align: center; }
+    .profile-links-98 { justify-content: center; }
+    .contact98 { grid-template-columns: 1fr; }
+    .file-grid { grid-template-columns: repeat(3, 1fr); }
+    .startmenu98 { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Boot Screen -->
+<div class="boot98" id="boot98">
+  <div class="boot98-logo">
+    ⊞ Windows 98<br>
+    <span style="font-size:14px;color:#aaa">Aaditya Barak Edition</span>
+  </div>
+  <div class="boot98-bar"><div class="boot98-fill"></div></div>
+  <div class="boot98-text">Loading personal files...</div>
+</div>
+
+<!-- Desktop -->
+<div class="desktop" id="desktop">
+
+  <!-- Desktop Icons -->
+  <div class="desk-icons">
+    <div class="dicon" ondblclick="openWin('portfolio')">
+      <div class="dicon-img">💻</div>
+      <div class="dicon-label">My Portfolio</div>
+    </div>
+    <div class="dicon" ondblclick="openWin('projects')">
+      <div class="dicon-img">📁</div>
+      <div class="dicon-label">My Projects</div>
+    </div>
+    <div class="dicon" ondblclick="window.open('https://github.com/AddyB0t','_blank')">
+      <div class="dicon-img">🌐</div>
+      <div class="dicon-label">GitHub</div>
+    </div>
+    <div class="dicon" ondblclick="window.open('mailto:aadityabarak970@gmail.com')">
+      <div class="dicon-img">📧</div>
+      <div class="dicon-label">Email</div>
+    </div>
+    <div class="dicon" ondblclick="window.open('https://www.linkedin.com/in/aaditya-barak-a744b0317','_blank')">
+      <div class="dicon-img">💼</div>
+      <div class="dicon-label">LinkedIn</div>
+    </div>
+    <div class="dicon">
+      <div class="dicon-img">🗑️</div>
+      <div class="dicon-label">Recycle Bin</div>
+    </div>
+  </div>
+
+  <!-- ===== PORTFOLIO WINDOW ===== -->
+  <div class="w98-window open" id="win-portfolio" style="top:8px;left:100px;width:820px;height:calc(100vh - 50px);">
+    <div class="w98-title" onmousedown="startDrag(event,'win-portfolio')">
+      <div class="w98-title-left">
+        <span class="w98-title-icon">💻</span> Aaditya Barak — Portfolio
+      </div>
+      <div class="w98-title-btns">
+        <button class="w98-btn" onclick="minimizeWin('portfolio')">_</button>
+        <button class="w98-btn" onclick="toggleMax('win-portfolio')">□</button>
+        <button class="w98-btn" onclick="closeWin('portfolio')">✕</button>
+      </div>
+    </div>
+    <div class="w98-menu">
+      <span>File</span><span>Edit</span><span>View</span><span>Go</span><span>Favorites</span><span>Help</span>
+    </div>
+    <div class="w98-toolbar">
+      <button class="w98-tb-btn" onclick="scrollTo98('sec-exp')">⬅ Back</button>
+      <div class="w98-tb-sep"></div>
+      <button class="w98-tb-btn">📁 Folders</button>
+      <button class="w98-tb-btn" onclick="scrollTo98('sec-exp')">🔍 Search</button>
+    </div>
+    <div class="w98-addr">
+      <span>Address:</span>
+      <input value="C:\Users\Addy\Portfolio\" readonly>
+    </div>
+
+    <div class="w98-body" id="mainBody" style="height:calc(100% - 100px);">
+      <div class="w98-explorer">
+        <!-- Tree -->
+        <div class="w98-tree">
+          <div class="tree-item ti-open" onclick="scrollTo98('top98')">Desktop</div>
+          <div class="tree-child">
+            <div class="tree-item ti-open" onclick="scrollTo98('top98')">My Portfolio</div>
+            <div class="tree-child">
+              <div class="tree-item" onclick="scrollTo98('sec-exp')">Experience</div>
+              <div class="tree-item" onclick="scrollTo98('sec-proj')">Projects</div>
+              <div class="tree-item" onclick="scrollTo98('sec-skills')">Skills</div>
+              <div class="tree-item" onclick="scrollTo98('sec-edu')">Education</div>
+              <div class="tree-item" onclick="scrollTo98('sec-contact')">Contact</div>
+            </div>
+            <div class="tree-item" onclick="openWin('projects')">My Projects</div>
+          </div>
+          <div class="tree-child">
+            <div class="tree-item" onclick="window.open('https://github.com/AddyB0t','_blank')">🌐 GitHub</div>
+            <div class="tree-item" onclick="window.open('https://www.linkedin.com/in/aaditya-barak-a744b0317','_blank')">💼 LinkedIn</div>
+            <div class="tree-item" onclick="window.open('https://x.com/aadi29494','_blank')">🐦 X / Twitter</div>
+            <div class="tree-item" onclick="window.open('https://discord.com/invite/QHAbprqQme','_blank')">💬 Discord</div>
+          </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="w98-filelist" id="fileList">
+          <!-- Profile -->
+          <div class="profile-98" id="top98">
+            <div class="profile-photo">
+              <img src="profile.jpg" alt="Aaditya Barak">
+            </div>
+            <div class="profile-text">
+              <h1>Aaditya Barak</h1>
+              <div class="p-tag">AI Engineer — LLMs, RAG Systems, Document Intelligence</div>
+              <div class="profile-links-98">
+                <a class="p-link" href="mailto:aadityabarak970@gmail.com">📧 Email</a>
+                <a class="p-link" href="https://www.linkedin.com/in/aaditya-barak-a744b0317" target="_blank">💼 LinkedIn</a>
+                <a class="p-link" href="https://github.com/AddyB0t" target="_blank">🌐 GitHub</a>
+                <a class="p-link" href="tel:+919896127290">📞 Call</a>
+                <a class="p-link" href="https://x.com/aadi29494" target="_blank">🐦 X</a>
+                <a class="p-link" href="https://discord.com/invite/QHAbprqQme" target="_blank">💬 Discord</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience -->
+          <div class="w98-group" id="sec-exp">
+            <legend>💼 Experience</legend>
+            <div class="exp98">
+              <div class="exp98-role">Artificial Intelligence Engineer</div>
+              <div class="exp98-co">PRUDENTBIT</div>
+              <div class="exp98-meta"><span>Noida, UP</span><span>May 2025 – Dec 2025</span></div>
+              <ul class="exp98-list">
+                <li>Led <b>production-grade document redaction</b> for PDF, DOCX, images — <b>70%</b> effort reduction, <b>1,000+ docs</b></li>
+                <li>Built <b>end-to-end AI pipeline</b> (OCR + PII detection + masking) — <b>2x</b> processing speed</li>
+                <li>Preprocessing pipeline improving <b>OCR accuracy 25–35%</b></li>
+                <li><b>PII detection</b> with pixel-level masking, layout preserved</li>
+                <li><b>TinyBERT reranking</b> (100ms) improving search relevance</li>
+              </ul>
+            </div>
+            <div class="exp98">
+              <div class="exp98-role">Freelance AI Engineer</div>
+              <div class="exp98-co">SELF-EMPLOYED</div>
+              <div class="exp98-meta"><span>Remote</span><span>May 2025 – Present</span></div>
+              <ul class="exp98-list">
+                <li><b>ZapUp</b> — AI Ed Platform: real-time chatbot, Next.js + Supabase</li>
+                <li>Context-aware LLM with conversation memory & dynamic filtering</li>
+                <li><b>TITTA</b> — Construction RAG: PDFs + CAD (DWG/DXF)</li>
+                <li>BGE-large embeddings + Supabase vector storage</li>
+                <li>DWG/DXF metadata extraction → PostgreSQL</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Projects -->
+          <div class="w98-group" id="sec-proj">
+            <legend>📂 Projects</legend>
+            <div class="file-grid">
+              <a class="file-tile" href="https://github.com/AddyB0t/assignment-5" target="_blank">
+                <span class="ft-icon">🛒</span>
+                <span class="ft-name">Shopify Analytics</span>
+                <span class="ft-desc">NL → ShopifyQL → Insights</span>
+              </a>
+              <a class="file-tile" href="https://github.com/AddyB0t/veda-rag-system" target="_blank">
+                <span class="ft-icon">📚</span>
+                <span class="ft-name">Veda RAG</span>
+                <span class="ft-desc">Document Q&A</span>
+              </a>
+              <a class="file-tile" href="https://github.com/AddyB0t/Deepfake-Detection-System" target="_blank">
+                <span class="ft-icon">🎭</span>
+                <span class="ft-name">Deepfake Detect</span>
+                <span class="ft-desc">93% VGG16 CNN</span>
+              </a>
+              <a class="file-tile" href="https://github.com/AddyB0t/RAG-ChatBot" target="_blank">
+                <span class="ft-icon">🤖</span>
+                <span class="ft-name">RAG ChatBot</span>
+                <span class="ft-desc">FAISS + GPT-4</span>
+              </a>
+              <a class="file-tile" href="https://github.com/AddyB0t/ai-counsellor" target="_blank">
+                <span class="ft-icon">🧠</span>
+                <span class="ft-name">AI Counsellor</span>
+                <span class="ft-desc">TypeScript AI</span>
+              </a>
+              <a class="file-tile" href="https://github.com/AddyB0t/InstaChat" target="_blank">
+                <span class="ft-icon">💬</span>
+                <span class="ft-name">InstaChat</span>
+                <span class="ft-desc">Real-time msg</span>
+              </a>
+              <a class="file-tile" href="https://github.com/AddyB0t/YouTube-Bot---AI-Powered-Content-Assistant" target="_blank">
+                <span class="ft-icon">📺</span>
+                <span class="ft-name">YouTube Bot</span>
+                <span class="ft-desc">Multi-LLM</span>
+              </a>
+              <a class="file-tile" href="https://github.com/AddyB0t/Research-Paper-Summarization-Tool" target="_blank">
+                <span class="ft-icon">📄</span>
+                <span class="ft-name">Paper Summary</span>
+                <span class="ft-desc">LangChain</span>
+              </a>
+              <a class="file-tile" href="https://github.com/AddyB0t/Real-time-Chat-Room-Application" target="_blank">
+                <span class="ft-icon">🗨️</span>
+                <span class="ft-name">Chat Room</span>
+                <span class="ft-desc">WebSocket</span>
+              </a>
+              <a class="file-tile" href="https://github.com/AddyB0t/LangChain-LLM-Playground" target="_blank">
+                <span class="ft-icon">🔗</span>
+                <span class="ft-name">LangChain Lab</span>
+                <span class="ft-desc">LLM Playground</span>
+              </a>
+              <a class="file-tile" href="https://github.com/AddyB0t/lebanon-initiative" target="_blank">
+                <span class="ft-icon">🌍</span>
+                <span class="ft-name">Lebanon Initiative</span>
+                <span class="ft-desc">Social Impact</span>
+              </a>
+              <a class="file-tile" href="https://github.com/AddyB0t/Pattern-Detection-Service" target="_blank">
+                <span class="ft-icon">🔍</span>
+                <span class="ft-name">Pattern Detect</span>
+                <span class="ft-desc">Python ML</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Skills -->
+          <div class="w98-group" id="sec-skills">
+            <legend>🛠️ Technical Skills</legend>
+            <div class="sk98"><span class="sk98-name">Python</span><div class="sk98-bar"><div class="sk98-fill" style="width:95%"></div></div><span class="sk98-pct">95%</span></div>
+            <div class="sk98"><span class="sk98-name">LLMs / GenAI</span><div class="sk98-bar"><div class="sk98-fill" style="width:92%"></div></div><span class="sk98-pct">92%</span></div>
+            <div class="sk98"><span class="sk98-name">RAG / LangChain</span><div class="sk98-bar"><div class="sk98-fill" style="width:90%"></div></div><span class="sk98-pct">90%</span></div>
+            <div class="sk98"><span class="sk98-name">PyTorch / ML</span><div class="sk98-bar"><div class="sk98-fill" style="width:88%"></div></div><span class="sk98-pct">88%</span></div>
+            <div class="sk98"><span class="sk98-name">NLP / Transformers</span><div class="sk98-bar"><div class="sk98-fill" style="width:85%"></div></div><span class="sk98-pct">85%</span></div>
+            <div class="sk98"><span class="sk98-name">CV / OCR</span><div class="sk98-bar"><div class="sk98-fill" style="width:80%"></div></div><span class="sk98-pct">80%</span></div>
+            <div class="sk98"><span class="sk98-name">PostgreSQL / Redis</span><div class="sk98-bar"><div class="sk98-fill" style="width:78%"></div></div><span class="sk98-pct">78%</span></div>
+            <div class="sk98"><span class="sk98-name">JavaScript / SQL</span><div class="sk98-bar"><div class="sk98-fill" style="width:72%"></div></div><span class="sk98-pct">72%</span></div>
+            <div class="sk98"><span class="sk98-name">Git / Linux</span><div class="sk98-bar"><div class="sk98-fill" style="width:82%"></div></div><span class="sk98-pct">82%</span></div>
+          </div>
+
+          <!-- Education -->
+          <div class="w98-group" id="sec-edu">
+            <legend>🎓 Education</legend>
+            <div style="display:flex;gap:12px;align-items:center;">
+              <span style="font-size:32px;">🎓</span>
+              <div>
+                <div style="font-weight:bold;color:var(--win-navy);">UIET, Panjab University</div>
+                <div style="font-size:12px;">B.E. — Electrical & Electronics Engineering</div>
+                <div style="font-size:11px;color:#666;">Sep 2022 – May 2026 | Chandigarh, India</div>
+                <div style="font-size:11px;color:#666;">Open Source Contributor & Mentor — ML/NLP repos</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact -->
+          <div class="w98-group" id="sec-contact">
+            <legend>📞 Contact</legend>
+            <div class="contact98">
+              <a class="c98-item" href="mailto:aadityabarak970@gmail.com"><span class="c98i">📧</span><div><b>Email</b><br><small>aadityabarak970@gmail.com</small></div></a>
+              <a class="c98-item" href="tel:+919896127290"><span class="c98i">📞</span><div><b>Phone</b><br><small>+91 9896127290</small></div></a>
+              <a class="c98-item" href="https://www.linkedin.com/in/aaditya-barak-a744b0317" target="_blank"><span class="c98i">💼</span><div><b>LinkedIn</b><br><small>aaditya-barak</small></div></a>
+              <a class="c98-item" href="https://github.com/AddyB0t" target="_blank"><span class="c98i">🌐</span><div><b>GitHub</b><br><small>AddyB0t</small></div></a>
+              <a class="c98-item" href="https://x.com/aadi29494" target="_blank"><span class="c98i">🐦</span><div><b>X / Twitter</b><br><small>@aadi29494</small></div></a>
+              <a class="c98-item" href="https://discord.com/invite/QHAbprqQme" target="_blank"><span class="c98i">💬</span><div><b>Discord</b><br><small>Community</small></div></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="w98-status">
+      <div class="w98-status-sec">12 object(s)</div>
+      <div class="w98-status-sec">C:\Users\Addy\</div>
+    </div>
+  </div>
+
+  <!-- ===== PROJECTS DETAIL WINDOW ===== -->
+  <div class="w98-window" id="win-projects" style="top:20px;left:150px;width:700px;height:450px;">
+    <div class="w98-title" onmousedown="startDrag(event,'win-projects')">
+      <div class="w98-title-left">
+        <span class="w98-title-icon">📁</span> My Projects — Details View
+      </div>
+      <div class="w98-title-btns">
+        <button class="w98-btn" onclick="minimizeWin('projects')">_</button>
+        <button class="w98-btn" onclick="toggleMax('win-projects')">□</button>
+        <button class="w98-btn" onclick="closeWin('projects')">✕</button>
+      </div>
+    </div>
+    <div class="w98-body" style="height:calc(100% - 24px);margin:2px;">
+      <table class="list-view">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Tech</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ondblclick="window.open('https://github.com/AddyB0t/assignment-5','_blank')"><td>🛒 Shopify Analytics App</td><td>AI/Full-Stack</td><td>Rails, FastAPI, GPT-4</td><td>NL questions → ShopifyQL → business insights via LLM agents</td></tr>
+          <tr ondblclick="window.open('https://github.com/AddyB0t/veda-rag-system','_blank')"><td>📚 Veda RAG System</td><td>AI/RAG</td><td>FastAPI, Python</td><td>Document Q&A with Veda AI assistant</td></tr>
+          <tr ondblclick="window.open('https://github.com/AddyB0t/Deepfake-Detection-System','_blank')"><td>🎭 Deepfake Detection</td><td>ML/CV</td><td>TensorFlow, VGG16</td><td>93% accuracy CNN deepfake detector</td></tr>
+          <tr ondblclick="window.open('https://github.com/AddyB0t/RAG-ChatBot','_blank')"><td>🤖 RAG ChatBot</td><td>AI/RAG</td><td>FAISS, GPT-4, PG</td><td>Multi-format doc chatbot with PII protection</td></tr>
+          <tr ondblclick="window.open('https://github.com/AddyB0t/ai-counsellor','_blank')"><td>🧠 AI Counsellor</td><td>AI App</td><td>TypeScript</td><td>AI-powered counselling application</td></tr>
+          <tr ondblclick="window.open('https://github.com/AddyB0t/InstaChat','_blank')"><td>💬 InstaChat</td><td>Chat</td><td>TypeScript</td><td>Real-time messaging application</td></tr>
+          <tr ondblclick="window.open('https://github.com/AddyB0t/YouTube-Bot---AI-Powered-Content-Assistant','_blank')"><td>📺 YouTube AI Bot</td><td>AI/NLP</td><td>LangChain</td><td>Multi-LLM content assistant</td></tr>
+          <tr ondblclick="window.open('https://github.com/AddyB0t/Research-Paper-Summarization-Tool','_blank')"><td>📄 Paper Summarizer</td><td>AI/NLP</td><td>Streamlit, LangChain</td><td>Research paper summarization tool</td></tr>
+          <tr ondblclick="window.open('https://github.com/AddyB0t/Real-time-Chat-Room-Application','_blank')"><td>🗨️ Chat Room App</td><td>Full-Stack</td><td>FastAPI, WebSocket</td><td>Real-time chat with persistence</td></tr>
+          <tr ondblclick="window.open('https://github.com/AddyB0t/LangChain-LLM-Playground','_blank')"><td>🔗 LangChain Playground</td><td>AI/Lab</td><td>LangChain, JS</td><td>LLM experimentation playground</td></tr>
+          <tr ondblclick="window.open('https://github.com/AddyB0t/lebanon-initiative','_blank')"><td>🌍 Lebanon Initiative</td><td>Social</td><td>TypeScript</td><td>Safe space platform for women & children</td></tr>
+          <tr ondblclick="window.open('https://github.com/AddyB0t/Pattern-Detection-Service','_blank')"><td>🔍 Pattern Detection</td><td>ML</td><td>Python</td><td>Pattern detection service</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- Welcome Dialog -->
+<div class="dialog98 open" id="welcomeDialog">
+  <div class="w98-title">
+    <div class="w98-title-left"><span class="w98-title-icon">ℹ️</span> Welcome</div>
+    <div class="w98-title-btns">
+      <button class="w98-btn" onclick="document.getElementById('welcomeDialog').classList.remove('open')">✕</button>
+    </div>
+  </div>
+  <div class="dialog-body">
+    <div class="dialog-icon">💻</div>
+    <div class="dialog-text">
+      <b>Welcome to Aaditya's Desktop!</b><br><br>
+      Double-click icons to open windows.<br>
+      Use the <b>Start</b> menu for navigation.
+    </div>
+  </div>
+  <div class="dialog-btns">
+    <button class="dialog-btn" onclick="document.getElementById('welcomeDialog').classList.remove('open')" autofocus>OK</button>
+  </div>
+</div>
+
+<!-- Start Menu -->
+<div class="startmenu98" id="startMenu98">
+  <div class="sm98-sidebar"><span>Windows98</span></div>
+  <div class="sm98-items">
+    <div class="sm98-item" onclick="openWin('portfolio');closeStart()"><span class="sm98i">💻</span> My Portfolio</div>
+    <div class="sm98-item" onclick="openWin('projects');closeStart()"><span class="sm98i">📁</span> My Projects</div>
+    <div class="sm98-sep"></div>
+    <a class="sm98-item" href="https://github.com/AddyB0t" target="_blank"><span class="sm98i">🌐</span> GitHub</a>
+    <a class="sm98-item" href="https://www.linkedin.com/in/aaditya-barak-a744b0317" target="_blank"><span class="sm98i">💼</span> LinkedIn</a>
+    <a class="sm98-item" href="mailto:aadityabarak970@gmail.com"><span class="sm98i">📧</span> Email</a>
+    <a class="sm98-item" href="https://x.com/aadi29494" target="_blank"><span class="sm98i">🐦</span> X / Twitter</a>
+    <a class="sm98-item" href="https://discord.com/invite/QHAbprqQme" target="_blank"><span class="sm98i">💬</span> Discord</a>
+    <div class="sm98-sep"></div>
+    <div class="sm98-item" onclick="closeStart()"><span class="sm98i">🔴</span> Shut Down...</div>
+  </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar98">
+  <button class="start98" onclick="toggleStart()">
+    <span class="s-logo">⊞</span> <b>Start</b>
+  </button>
+  <div class="tb98-items" id="tbItems98">
+    <div class="tb98-item pressed" onclick="openWin('portfolio')">💻 Portfolio</div>
+  </div>
+  <div class="tray98">
+    <span>🔊</span>
+    <span id="clock98"></span>
+  </div>
+</div>
+
+<script>
+// === CLOCK ===
+function tick() {
+  const d = new Date();
+  const h = d.getHours() % 12 || 12;
+  const m = String(d.getMinutes()).padStart(2,'0');
+  const ap = d.getHours() >= 12 ? 'PM' : 'AM';
+  document.getElementById('clock98').textContent = h+':'+m+' '+ap;
+}
+tick(); setInterval(tick, 30000);
+
+// === BOOT ===
+setTimeout(() => { const b = document.getElementById('boot98'); if(b) b.remove(); }, 4000);
+
+// === START MENU ===
+function toggleStart() { document.getElementById('startMenu98').classList.toggle('open'); }
+function closeStart() { document.getElementById('startMenu98').classList.remove('open'); }
+document.addEventListener('click', e => {
+  if (!e.target.closest('.start98') && !e.target.closest('.startmenu98')) closeStart();
+});
+
+// === WINDOW MANAGEMENT ===
+const winOrder = [];
+function bringFront(el) {
+  const idx = winOrder.indexOf(el);
+  if (idx > -1) winOrder.splice(idx, 1);
+  winOrder.push(el);
+  winOrder.forEach((w, i) => w.style.zIndex = 100 + i);
+}
+
+function openWin(name) {
+  closeStart();
+  const el = document.getElementById('win-' + name);
+  if (el) { el.classList.add('open'); bringFront(el); updateTb(); }
+}
+
+function closeWin(name) {
+  const el = document.getElementById('win-' + name);
+  if (el) { el.classList.remove('open'); updateTb(); }
+}
+
+function minimizeWin(name) { closeWin(name); }
+
+function toggleMax(id) {
+  document.getElementById(id).classList.toggle('maximized');
+}
+
+function updateTb() {
+  const items = document.getElementById('tbItems98');
+  items.innerHTML = '';
+  document.querySelectorAll('.w98-window.open').forEach(w => {
+    const name = w.id.replace('win-','');
+    const title = w.querySelector('.w98-title-left').textContent.trim();
+    const icon = w.querySelector('.w98-title-icon').textContent;
+    const div = document.createElement('div');
+    div.className = 'tb98-item pressed';
+    div.textContent = icon + ' ' + title.substring(0, 20);
+    div.onclick = () => { bringFront(w); };
+    items.appendChild(div);
+  });
+}
+
+// === DRAG ===
+let dragEl=null, dx=0, dy=0;
+function startDrag(e, id) {
+  const el = document.getElementById(id);
+  if (el.classList.contains('maximized')) return;
+  bringFront(el);
+  dragEl = el;
+  dx = e.clientX - el.offsetLeft;
+  dy = e.clientY - el.offsetTop;
+  e.preventDefault();
+}
+document.addEventListener('mousemove', e => {
+  if (!dragEl) return;
+  dragEl.style.left = Math.max(0, e.clientX - dx) + 'px';
+  dragEl.style.top = Math.max(0, e.clientY - dy) + 'px';
+});
+document.addEventListener('mouseup', () => { dragEl = null; });
+
+// === SCROLL ===
+function scrollTo98(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+
+</script>
+</body>
+</html>

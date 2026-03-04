@@ -1,0 +1,30 @@
+{{ define "main" }}
+<div class="w98-window open" id="win-notepad" style="top:20px;left:80px;width:800px;height:calc(100vh - 60px);">
+  <div class="w98-title" onmousedown="startDrag(event,'win-notepad')">
+    <div class="w98-title-left">
+      <span class="w98-title-icon">📝</span> {{ .Title }} - Notepad
+    </div>
+    <div class="w98-title-btns">
+      <button class="w98-btn" onclick="window.location.href='/'">_</button>
+      <button class="w98-btn" onclick="toggleMax('win-notepad')">&#9633;</button>
+      <button class="w98-btn" onclick="window.location.href='/'">✕</button>
+    </div>
+  </div>
+  <div class="w98-menu">
+    <span onclick="window.location.href='/'">File</span>
+    <span>Edit</span>
+    <span>Format</span>
+    <span>View</span>
+    <span>Help</span>
+  </div>
+  <div class="w98-body" style="height:calc(100% - 60px);">
+    <div class="notepad-content">
+      {{ .Content }}
+    </div>
+  </div>
+  <div class="w98-status">
+    <div class="w98-status-sec">{{ .WordCount }} words</div>
+    <div class="w98-status-sec">{{ .ReadingTime }} min read</div>
+  </div>
+</div>
+{{ end }}

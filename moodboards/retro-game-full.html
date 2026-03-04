@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aaditya Barak — Portfolio (2D Retro Game)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green: #00ff41;
+    --dim-green: #00aa2a;
+    --blue: #4488ff;
+    --yellow: #ffcc00;
+    --orange: #ff6600;
+    --red: #ff3333;
+    --purple: #aa44ff;
+    --cyan: #00ffdd;
+    --bg: #0f0f23;
+    --surface: #1a1a2e;
+  }
+
+  body {
+    font-family: 'VT323', monospace;
+    background: var(--bg);
+    color: var(--green);
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* Scanlines */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 1px, transparent 1px, transparent 3px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* === STARS === */
+  .stars-container {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .star {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: #fff;
+    animation: twinkle var(--dur) ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+  }
+
+  .shooting-star {
+    position: absolute;
+    width: 80px; height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+    animation: shoot 3s linear infinite;
+    animation-delay: var(--delay);
+    top: var(--top);
+    left: -100px;
+  }
+
+  @keyframes shoot {
+    0% { transform: translateX(0) translateY(0); opacity: 0; }
+    10% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { transform: translateX(calc(100vw + 200px)) translateY(100px); opacity: 0; }
+  }
+
+  /* === HUD === */
+  .hud {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(15,15,35,0.95);
+    border-bottom: 3px solid var(--green);
+    padding: 6px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(6px);
+  }
+
+  .hud-section {
+    display: flex; align-items: center; gap: 16px;
+  }
+
+  .hud-stat {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    display: flex; align-items: center; gap: 5px;
+  }
+
+  .bar-wrap {
+    width: 80px; height: 10px;
+    background: #222; border: 1px solid var(--green);
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    transition: width 1s;
+  }
+
+  .bar-hp {
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--green));
+    width: 87%;
+    animation: barPulse 3s ease infinite;
+  }
+
+  .bar-xp {
+    background: var(--blue);
+    width: 0;
+    animation: xpGrow 2s ease 1s forwards;
+  }
+
+  @keyframes xpGrow { to { width: 72%; } }
+
+  @keyframes barPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+  }
+
+  /* === NAV MENU === */
+  .game-nav {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px 12px;
+    background: var(--surface);
+    border-bottom: 2px solid var(--green);
+    position: sticky;
+    top: 36px;
+    z-index: 999;
+    flex-wrap: wrap;
+  }
+
+  .nav-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    padding: 8px 14px;
+    background: var(--bg);
+    color: var(--green);
+    border: 2px solid var(--green);
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.1s;
+    display: inline-block;
+  }
+
+  .nav-btn:hover, .nav-btn.active {
+    background: var(--green);
+    color: var(--bg);
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(0,255,65,0.4);
+  }
+
+  .nav-btn.external {
+    border-color: var(--blue);
+    color: var(--blue);
+  }
+
+  .nav-btn.external:hover {
+    background: var(--blue);
+    color: var(--bg);
+    box-shadow: 0 0 12px rgba(68,136,255,0.4);
+  }
+
+  /* === CONTENT === */
+  .content {
+    position: relative;
+    z-index: 10;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 16px 16px 60px;
+  }
+
+  /* === HERO === */
+  .hero {
+    text-align: center;
+    padding: 50px 10px 40px;
+    position: relative;
+  }
+
+  .pixel-char {
+    width: 100px; height: 100px;
+    margin: 0 auto 16px;
+    position: relative;
+    font-size: 72px;
+    animation: charBounce 1.5s ease infinite;
+    filter: drop-shadow(0 0 12px rgba(0,255,65,0.4));
+  }
+
+  @keyframes charBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .hero h1 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 28px;
+    color: var(--green);
+    text-shadow: 3px 3px 0px #006600, 0 0 20px rgba(0,255,65,0.3);
+    margin-bottom: 8px;
+    animation: heroGlitch 4s infinite;
+  }
+
+  @keyframes heroGlitch {
+    0%, 93%, 100% { transform: none; text-shadow: 3px 3px 0px #006600, 0 0 20px rgba(0,255,65,0.3); }
+    94% { transform: translate(-2px, 1px); text-shadow: 3px 3px 0px #006600, -2px 0 var(--red), 2px 0 var(--cyan); }
+    96% { transform: translate(2px, -1px); text-shadow: 3px 3px 0px #006600, 2px 0 var(--red), -2px 0 var(--cyan); }
+    98% { transform: translate(-1px, 0); }
+  }
+
+  .hero .subtitle {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--blue);
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+
+  .typing-line {
+    font-size: 20px;
+    color: var(--yellow);
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--yellow);
+    width: 0;
+    max-width: fit-content;
+    margin: 0 auto;
+    animation: typing 2.5s steps(45) 0.8s forwards, blink 0.7s step-end infinite;
+  }
+
+  @keyframes typing { from { width: 0; } to { width: 100%; } }
+  @keyframes blink { 50% { border-color: transparent; } }
+
+  .hero-links {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+  .hero-link {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px;
+    padding: 6px 12px;
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+
+  .hero-link:hover {
+    background: var(--cyan);
+    color: var(--bg);
+    box-shadow: 0 0 10px rgba(0,255,221,0.4);
+  }
+
+  /* === SECTIONS === */
+  .section-box {
+    margin-bottom: 24px;
+    border: 3px solid var(--green);
+    background: var(--surface);
+    animation: sectionFade 0.5s ease both;
+  }
+
+  .section-box:nth-child(2) { animation-delay: 0.1s; }
+  .section-box:nth-child(3) { animation-delay: 0.2s; }
+  .section-box:nth-child(4) { animation-delay: 0.3s; }
+
+  @keyframes sectionFade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-box.blue { border-color: var(--blue); }
+  .section-box.yellow { border-color: var(--yellow); }
+  .section-box.purple { border-color: var(--purple); }
+  .section-box.cyan { border-color: var(--cyan); }
+  .section-box.orange { border-color: var(--orange); }
+
+  .sec-head {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    padding: 10px 14px;
+    background: var(--green);
+    color: var(--bg);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .section-box.blue .sec-head { background: var(--blue); }
+  .section-box.yellow .sec-head { background: var(--yellow); color: #1a1a2e; }
+  .section-box.purple .sec-head { background: var(--purple); }
+  .section-box.cyan .sec-head { background: var(--cyan); color: #1a1a2e; }
+  .section-box.orange .sec-head { background: var(--orange); }
+
+  .sec-body { padding: 14px; }
+
+  /* === QUEST ENTRIES === */
+  .quest {
+    padding: 14px;
+    border-bottom: 1px dashed rgba(0,255,65,0.15);
+    animation: questSlide 0.4s ease both;
+  }
+
+  .quest:last-child { border-bottom: none; }
+
+  @keyframes questSlide {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .quest-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--yellow);
+    margin-bottom: 4px;
+  }
+
+  .quest-meta {
+    font-size: 15px;
+    color: var(--blue);
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .quest-list {
+    list-style: none; padding: 0;
+  }
+
+  .quest-list li {
+    font-size: 17px;
+    color: #aaffaa;
+    line-height: 1.5;
+    padding: 2px 0 2px 18px;
+    position: relative;
+  }
+
+  .quest-list li::before {
+    content: '►';
+    position: absolute; left: 0;
+    color: var(--green); font-size: 10px; top: 4px;
+  }
+
+  .quest-reward {
+    margin-top: 6px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px;
+    color: var(--orange);
+    padding: 4px 8px;
+    border: 1px dashed var(--orange);
+    display: inline-block;
+    animation: rewardGlow 2s ease infinite alternate;
+  }
+
+  @keyframes rewardGlow {
+    from { box-shadow: 0 0 4px rgba(255,102,0,0.2); }
+    to { box-shadow: 0 0 12px rgba(255,102,0,0.5); }
+  }
+
+  /* === INVENTORY === */
+  .inv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 6px;
+    padding: 14px;
+  }
+
+  .inv-slot {
+    border: 2px solid #333;
+    background: var(--bg);
+    padding: 10px 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+  }
+
+  .inv-slot:hover {
+    transform: scale(1.08);
+    z-index: 5;
+  }
+
+  .inv-slot.common { border-color: #aaa; }
+  .inv-slot.rare { border-color: var(--blue); }
+  .inv-slot.epic { border-color: var(--purple); box-shadow: inset 0 0 10px rgba(170,68,255,0.1); }
+  .inv-slot.legendary {
+    border-color: var(--yellow);
+    box-shadow: 0 0 10px rgba(255,204,0,0.2), inset 0 0 10px rgba(255,204,0,0.05);
+    animation: legendaryShine 2s ease infinite alternate;
+  }
+
+  @keyframes legendaryShine {
+    from { box-shadow: 0 0 6px rgba(255,204,0,0.2), inset 0 0 6px rgba(255,204,0,0.05); }
+    to { box-shadow: 0 0 16px rgba(255,204,0,0.4), inset 0 0 12px rgba(255,204,0,0.1); }
+  }
+
+  .inv-slot:hover.common { border-color: #fff; box-shadow: 0 0 8px rgba(170,170,170,0.3); }
+  .inv-slot:hover.rare { box-shadow: 0 0 12px rgba(68,136,255,0.4); }
+  .inv-slot:hover.epic { box-shadow: 0 0 12px rgba(170,68,255,0.5); }
+  .inv-slot:hover.legendary { box-shadow: 0 0 20px rgba(255,204,0,0.6); }
+
+  .inv-slot .s-icon { font-size: 28px; margin-bottom: 3px; display: block; }
+
+  .inv-slot .s-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 6px; color: #fff; display: block; margin-bottom: 2px;
+  }
+
+  .inv-slot .s-lvl { font-size: 13px; color: var(--yellow); }
+
+  /* === ACHIEVEMENT CARDS === */
+  .ach-list { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+
+  .ach {
+    display: flex; gap: 12px;
+    padding: 12px;
+    border: 2px solid #333;
+    background: var(--bg);
+    align-items: flex-start;
+    transition: all 0.15s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .ach:hover {
+    border-color: var(--yellow);
+    transform: translateX(4px);
+    box-shadow: -4px 0 0 var(--yellow);
+  }
+
+  .ach-badge {
+    width: 48px; height: 48px;
+    border: 2px solid var(--yellow);
+    background: var(--surface);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; flex-shrink: 0;
+    animation: badgeFloat 3s ease infinite alternate;
+  }
+
+  @keyframes badgeFloat {
+    from { transform: translateY(0); }
+    to { transform: translateY(-3px); }
+  }
+
+  .ach-info h4 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px; color: var(--yellow);
+    margin-bottom: 4px;
+  }
+
+  .ach-info p { font-size: 15px; color: #aaffaa; line-height: 1.4; }
+
+  .ach-info .ach-tech {
+    margin-top: 5px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 6px; color: var(--blue);
+  }
+
+  /* === STAT ROWS === */
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 14px;
+    border-bottom: 1px dashed rgba(170,68,255,0.2);
+    align-items: center;
+  }
+
+  .stat-row:last-child { border-bottom: none; }
+
+  .stat-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px; color: var(--purple);
+  }
+
+  .stat-val { font-size: 17px; color: #fff; }
+
+  /* === CONTACT GRID === */
+  .contact-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+    padding: 14px;
+  }
+
+  .contact-slot {
+    border: 2px solid var(--cyan);
+    background: var(--bg);
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+
+  .contact-slot:hover {
+    background: rgba(0,255,221,0.08);
+    transform: scale(1.04);
+    box-shadow: 0 0 14px rgba(0,255,221,0.3);
+  }
+
+  .contact-slot .cs-icon { font-size: 28px; margin-bottom: 4px; display: block; }
+
+  .contact-slot .cs-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px; color: var(--cyan); display: block;
+    margin-bottom: 3px;
+  }
+
+  .contact-slot .cs-val {
+    font-size: 14px; color: #aaffaa;
+    word-break: break-all;
+  }
+
+  /* === BLOG === */
+  .blog-entry {
+    padding: 10px 14px;
+    border-bottom: 1px dashed rgba(0,255,65,0.15);
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .blog-entry:hover {
+    background: rgba(0,255,65,0.05);
+    padding-left: 20px;
+  }
+
+  .blog-entry .be-icon { font-size: 24px; }
+
+  .blog-entry .be-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px; color: var(--yellow);
+  }
+
+  .blog-entry .be-desc { font-size: 15px; color: #aaffaa; }
+
+  /* === FOOTER === */
+  .game-footer {
+    text-align: center;
+    padding: 30px 10px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: #333;
+  }
+
+  .coin {
+    color: var(--yellow);
+    animation: coinSpin 1s steps(4) infinite;
+    display: inline-block;
+  }
+
+  @keyframes coinSpin {
+    0% { transform: scaleX(1); }
+    25% { transform: scaleX(0.5); }
+    50% { transform: scaleX(0); }
+    75% { transform: scaleX(0.5); }
+    100% { transform: scaleX(1); }
+  }
+
+  /* === XP COUNTER ANIMATION === */
+  .xp-counter {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--yellow);
+    text-align: center;
+    padding: 8px;
+    border-top: 1px dashed var(--yellow);
+    margin-top: 10px;
+  }
+
+  /* Floating particles */
+  .particle {
+    position: fixed;
+    width: 4px; height: 4px;
+    background: var(--green);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.3;
+    animation: particleFloat var(--dur) linear infinite;
+    animation-delay: var(--delay);
+    left: var(--x);
+  }
+
+  @keyframes particleFloat {
+    0% { transform: translateY(100vh); opacity: 0; }
+    10% { opacity: 0.3; }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(-20px); opacity: 0; }
+  }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 18px; }
+    .hud { flex-direction: column; gap: 4px; padding: 4px 8px; }
+    .inv-grid { grid-template-columns: repeat(3, 1fr); }
+    .ach { flex-direction: column; align-items: center; text-align: center; }
+    .contact-slots { grid-template-columns: 1fr 1fr; }
+    .game-nav { top: 52px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Stars -->
+<div class="stars-container" id="stars"></div>
+
+<!-- Floating particles -->
+<div class="particle" style="--x:10%;--dur:8s;--delay:0s"></div>
+<div class="particle" style="--x:25%;--dur:12s;--delay:2s"></div>
+<div class="particle" style="--x:40%;--dur:10s;--delay:1s"></div>
+<div class="particle" style="--x:55%;--dur:14s;--delay:3s"></div>
+<div class="particle" style="--x:70%;--dur:9s;--delay:0.5s"></div>
+<div class="particle" style="--x:85%;--dur:11s;--delay:2.5s"></div>
+<div class="particle" style="--x:95%;--dur:13s;--delay:1.5s"></div>
+
+<!-- HUD -->
+<div class="hud">
+  <div class="hud-section">
+    <div class="hud-stat" style="color:var(--red)">❤️ HP <div class="bar-wrap"><div class="bar-fill bar-hp"></div></div></div>
+    <div class="hud-stat" style="color:var(--yellow)">⭐ LVL 4</div>
+  </div>
+  <div class="hud-section">
+    <div class="hud-stat" style="color:var(--blue)">📊 XP <div class="bar-wrap" style="border-color:var(--blue)"><div class="bar-fill bar-xp"></div></div></div>
+    <div class="hud-stat" style="color:var(--yellow)">🪙 <span id="coinCount">0</span></div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav class="game-nav">
+  <a class="nav-btn active" href="#hero">HOME</a>
+  <a class="nav-btn" href="#quests">QUESTS</a>
+  <a class="nav-btn" href="#inventory">SKILLS</a>
+  <a class="nav-btn" href="#achievements">PROJECTS</a>
+  <a class="nav-btn" href="#stats">STATS</a>
+  <a class="nav-btn" href="#contact">CONTACT</a>
+  <a class="nav-btn external" href="https://github.com/AddyB0t" target="_blank">GITHUB</a>
+  <a class="nav-btn external" href="https://www.linkedin.com/in/aaditya-barak-a744b0317" target="_blank">LINKEDIN</a>
+</nav>
+
+<div class="content">
+
+  <!-- Hero -->
+  <div class="hero" id="hero">
+    <div class="pixel-char">👾</div>
+    <h1>AADITYA BARAK</h1>
+    <div class="subtitle">~ AI ENGINEER ~</div>
+    <div class="typing-line">LLMs | RAG Systems | Document Intelligence</div>
+    <div class="hero-links">
+      <a class="hero-link" href="mailto:aadityabarak970@gmail.com">📧 EMAIL</a>
+      <a class="hero-link" href="https://github.com/AddyB0t" target="_blank">🐙 GITHUB</a>
+      <a class="hero-link" href="https://www.linkedin.com/in/aaditya-barak-a744b0317" target="_blank">💼 LINKEDIN</a>
+      <a class="hero-link" href="https://x.com/aadi29494" target="_blank">🐦 X / TWITTER</a>
+      <a class="hero-link" href="https://discord.com/invite/QHAbprqQme" target="_blank">💬 DISCORD</a>
+      <a class="hero-link" href="tel:+919896127290">📱 CALL</a>
+    </div>
+  </div>
+
+  <!-- Quest Log (Experience) -->
+  <div class="section-box" id="quests">
+    <div class="sec-head">⚔️ QUEST LOG — EXPERIENCE</div>
+    <div class="sec-body" style="padding:0;">
+      <div class="quest">
+        <div class="quest-name">MAIN QUEST: PrudentBit — AI Engineer</div>
+        <div class="quest-meta">
+          <span>📍 Noida, Uttar Pradesh</span>
+          <span>🕐 May 2025 – Dec 2025</span>
+        </div>
+        <ul class="quest-list">
+          <li>Led <b>production-grade document redaction</b> system — 70% manual effort reduction across 1,000+ docs</li>
+          <li>Built <b>end-to-end document AI pipeline</b> (OCR + PII detection + masking) — 2x speed</li>
+          <li>Designed <b>preprocessing pipeline</b> — OCR accuracy improved 25–35%</li>
+          <li><b>PII detection</b> with pixel-level masking while preserving layout</li>
+          <li><b>TinyBERT-based reranking</b> (100ms) — improved search relevance</li>
+        </ul>
+        <div class="quest-reward">🏆 REWARD: +500 XP | 🛡️ Production Engineering Badge | 📄 1000+ Docs Processed</div>
+      </div>
+      <div class="quest">
+        <div class="quest-name">SIDE QUEST: Freelance AI Engineer</div>
+        <div class="quest-meta">
+          <span>📍 Remote</span>
+          <span>🕐 May 2025 – Present</span>
+        </div>
+        <ul class="quest-list">
+          <li><b>ZapUp</b> — AI Educational Platform: Full-stack with real-time chatbot, Next.js & Supabase</li>
+          <li>Context-aware LLM assistant with conversation memory and dynamic filtering</li>
+          <li><b>TITTA</b> — AI Construction Analysis: Production RAG for PDFs + CAD (DWG/DXF)</li>
+          <li>BGE-large embeddings + Supabase vector storage for semantic search</li>
+          <li>DWG/DXF metadata extraction pipeline → PostgreSQL structured storage</li>
+        </ul>
+        <div class="quest-reward">🗡️ REWARD: +350 XP | 🔗 Full-Stack Sword | 🌐 Remote Warrior Badge</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inventory (Skills) -->
+  <div class="section-box blue" id="inventory">
+    <div class="sec-head">🎒 INVENTORY — SKILLS</div>
+    <div class="inv-grid">
+      <div class="inv-slot legendary"><span class="s-icon">🐍</span><span class="s-name">PYTHON</span><span class="s-lvl">Lv. MAX</span></div>
+      <div class="inv-slot legendary"><span class="s-icon">🤖</span><span class="s-name">LLMs</span><span class="s-lvl">Lv. MAX</span></div>
+      <div class="inv-slot epic"><span class="s-icon">📡</span><span class="s-name">RAG</span><span class="s-lvl">Lv. 9</span></div>
+      <div class="inv-slot epic"><span class="s-icon">🔥</span><span class="s-name">PYTORCH</span><span class="s-lvl">Lv. 9</span></div>
+      <div class="inv-slot epic"><span class="s-icon">🔗</span><span class="s-name">LANGCHAIN</span><span class="s-lvl">Lv. 8</span></div>
+      <div class="inv-slot epic"><span class="s-icon">🔍</span><span class="s-name">OCR</span><span class="s-lvl">Lv. 8</span></div>
+      <div class="inv-slot rare"><span class="s-icon">📝</span><span class="s-name">NLP</span><span class="s-lvl">Lv. 8</span></div>
+      <div class="inv-slot rare"><span class="s-icon">🎯</span><span class="s-name">PROMPT ENG</span><span class="s-lvl">Lv. 8</span></div>
+      <div class="inv-slot rare"><span class="s-icon">👁️</span><span class="s-name">COMP VISION</span><span class="s-lvl">Lv. 7</span></div>
+      <div class="inv-slot rare"><span class="s-icon">🗄️</span><span class="s-name">POSTGRESQL</span><span class="s-lvl">Lv. 7</span></div>
+      <div class="inv-slot rare"><span class="s-icon">⚡</span><span class="s-name">SUPABASE</span><span class="s-lvl">Lv. 7</span></div>
+      <div class="inv-slot rare"><span class="s-icon">🔴</span><span class="s-name">REDIS</span><span class="s-lvl">Lv. 6</span></div>
+      <div class="inv-slot common"><span class="s-icon">🌐</span><span class="s-name">JAVASCRIPT</span><span class="s-lvl">Lv. 6</span></div>
+      <div class="inv-slot rare"><span class="s-icon">🐧</span><span class="s-name">LINUX</span><span class="s-lvl">Lv. 7</span></div>
+      <div class="inv-slot rare"><span class="s-icon">🐳</span><span class="s-name">DOCKER</span><span class="s-lvl">Lv. 6</span></div>
+      <div class="inv-slot common"><span class="s-icon">📊</span><span class="s-name">SQL</span><span class="s-lvl">Lv. 7</span></div>
+    </div>
+  </div>
+
+  <!-- Achievements (Projects) -->
+  <div class="section-box yellow" id="achievements">
+    <div class="sec-head">🏆 ACHIEVEMENTS — PROJECTS</div>
+    <div class="ach-list">
+      <a class="ach" href="https://github.com/AddyB0t/assignment-5" target="_blank">
+        <div class="ach-badge">🛒</div>
+        <div class="ach-info">
+          <h4>AI Shopify Analytics App</h4>
+          <p>Production analytics app — natural language → ShopifyQL → business insights via LLM agent workflow (Intent Classifier → Query Generator → Executor → Explainer)</p>
+          <div class="ach-tech">RAILS | FASTAPI | GPT-4 | POSTGRESQL | REDIS | DOCKER</div>
+        </div>
+      </a>
+      <a class="ach" href="https://github.com/AddyB0t/veda-rag-system" target="_blank">
+        <div class="ach-badge">📚</div>
+        <div class="ach-info">
+          <h4>Veda RAG System</h4>
+          <p>FastAPI-based RAG system for document Q&A with Veda AI assistant</p>
+          <div class="ach-tech">FASTAPI | RAG | PYTHON</div>
+        </div>
+      </a>
+      <a class="ach" href="https://github.com/AddyB0t/Deepfake-Detection-System" target="_blank">
+        <div class="ach-badge">🎭</div>
+        <div class="ach-info">
+          <h4>Deepfake Detection System</h4>
+          <p>93% accuracy CNN model using VGG16 transfer learning. Evaluated across real vs synthetic datasets.</p>
+          <div class="ach-tech">TENSORFLOW | CNN | VGG16 | APR 2025</div>
+        </div>
+      </a>
+      <a class="ach" href="https://github.com/AddyB0t/RAG-ChatBot" target="_blank">
+        <div class="ach-badge">🤖</div>
+        <div class="ach-info">
+          <h4>RAG ChatBot</h4>
+          <p>Document-based chatbot processing PDF/TXT/CSV/MD with FAISS vector search + GPT-4 context-aware responses + PII protection</p>
+          <div class="ach-tech">FAISS | GPT-4 | POSTGRESQL | FASTAPI</div>
+        </div>
+      </a>
+      <a class="ach" href="https://github.com/AddyB0t/ai-counsellor" target="_blank">
+        <div class="ach-badge">🧠</div>
+        <div class="ach-info">
+          <h4>AI Counsellor</h4>
+          <p>AI-powered counselling application built with TypeScript</p>
+          <div class="ach-tech">TYPESCRIPT | AI</div>
+        </div>
+      </a>
+      <a class="ach" href="https://github.com/AddyB0t/InstaChat" target="_blank">
+        <div class="ach-badge">💬</div>
+        <div class="ach-info">
+          <h4>InstaChat</h4>
+          <p>Real-time messaging application</p>
+          <div class="ach-tech">TYPESCRIPT | REAL-TIME</div>
+        </div>
+      </a>
+      <a class="ach" href="https://github.com/AddyB0t/YouTube-Bot---AI-Powered-Content-Assistant" target="_blank">
+        <div class="ach-badge">📺</div>
+        <div class="ach-info">
+          <h4>YouTube AI Bot</h4>
+          <p>AI content assistant integrating OpenAI, Anthropic, Google Gemini via LangChain framework</p>
+          <div class="ach-tech">LANGCHAIN | MULTI-LLM | JUPYTER</div>
+        </div>
+      </a>
+      <a class="ach" href="https://github.com/AddyB0t/Research-Paper-Summarization-Tool" target="_blank">
+        <div class="ach-badge">📄</div>
+        <div class="ach-info">
+          <h4>Paper Summarization Tool</h4>
+          <p>Streamlit web app using OpenAI + LangChain to summarize research papers with customizable explanation styles</p>
+          <div class="ach-tech">STREAMLIT | LANGCHAIN | OPENAI</div>
+        </div>
+      </a>
+      <a class="ach" href="https://github.com/AddyB0t/Real-time-Chat-Room-Application" target="_blank">
+        <div class="ach-badge">🗨️</div>
+        <div class="ach-info">
+          <h4>Real-time Chat Room</h4>
+          <p>FastAPI + WebSocket chat with message persistence, emoji support, real-time protocols</p>
+          <div class="ach-tech">FASTAPI | WEBSOCKET | PYTHON</div>
+        </div>
+      </a>
+      <a class="ach" href="https://github.com/AddyB0t/LangChain-LLM-Playground" target="_blank">
+        <div class="ach-badge">🔗</div>
+        <div class="ach-info">
+          <h4>LangChain LLM Playground</h4>
+          <p>Code examples and experiments with LangChain framework and various LLM providers</p>
+          <div class="ach-tech">LANGCHAIN | JAVASCRIPT</div>
+        </div>
+      </a>
+      <a class="ach" href="https://github.com/AddyB0t/lebanon-initiative" target="_blank">
+        <div class="ach-badge">🌍</div>
+        <div class="ach-info">
+          <h4>Lebanon Gender Initiative</h4>
+          <p>Safe space platform for women and children in South Lebanon</p>
+          <div class="ach-tech">TYPESCRIPT | SOCIAL IMPACT</div>
+        </div>
+      </a>
+      <a class="ach" href="https://github.com/AddyB0t/Pattern-Detection-Service" target="_blank">
+        <div class="ach-badge">🔍</div>
+        <div class="ach-info">
+          <h4>Pattern Detection Service</h4>
+          <p>Python-based pattern detection and analysis service</p>
+          <div class="ach-tech">PYTHON | ML</div>
+        </div>
+      </a>
+    </div>
+    <div class="xp-counter" id="xpCounter">TOTAL XP: 0</div>
+  </div>
+
+  <!-- Character Stats -->
+  <div class="section-box purple" id="stats">
+    <div class="sec-head">📊 CHARACTER STATS</div>
+    <div>
+      <div class="stat-row"><span class="stat-label">🎓 CLASS</span><span class="stat-val">B.E. — Electrical & Electronics Engineering</span></div>
+      <div class="stat-row"><span class="stat-label">🏰 GUILD</span><span class="stat-val">UIET, Panjab University</span></div>
+      <div class="stat-row"><span class="stat-label">📅 ACTIVE</span><span class="stat-val">Sep 2022 – May 2026</span></div>
+      <div class="stat-row"><span class="stat-label">🌍 REGION</span><span class="stat-val">Chandigarh, India</span></div>
+      <div class="stat-row"><span class="stat-label">🏅 TITLE</span><span class="stat-val">Open Source Contributor & Mentor</span></div>
+      <div class="stat-row"><span class="stat-label">🎮 SPECIALIZATION</span><span class="stat-val">AI / ML / LLMs / RAG Systems</span></div>
+      <div class="stat-row"><span class="stat-label">📦 REPOS</span><span class="stat-val">30+ Public Repositories</span></div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="section-box cyan" id="contact">
+    <div class="sec-head">📡 CONTACT — MULTIPLAYER</div>
+    <div class="contact-slots">
+      <a class="contact-slot" href="mailto:aadityabarak970@gmail.com">
+        <span class="cs-icon">📧</span>
+        <span class="cs-label">EMAIL</span>
+        <span class="cs-val">aadityabarak970@gmail.com</span>
+      </a>
+      <a class="contact-slot" href="tel:+919896127290">
+        <span class="cs-icon">📱</span>
+        <span class="cs-label">PHONE</span>
+        <span class="cs-val">+91 9896127290</span>
+      </a>
+      <a class="contact-slot" href="https://www.linkedin.com/in/aaditya-barak-a744b0317" target="_blank">
+        <span class="cs-icon">💼</span>
+        <span class="cs-label">LINKEDIN</span>
+        <span class="cs-val">aaditya-barak</span>
+      </a>
+      <a class="contact-slot" href="https://github.com/AddyB0t" target="_blank">
+        <span class="cs-icon">🐙</span>
+        <span class="cs-label">GITHUB</span>
+        <span class="cs-val">AddyB0t</span>
+      </a>
+      <a class="contact-slot" href="https://x.com/aadi29494" target="_blank">
+        <span class="cs-icon">🐦</span>
+        <span class="cs-label">X / TWITTER</span>
+        <span class="cs-val">@aadi29494</span>
+      </a>
+      <a class="contact-slot" href="https://discord.com/invite/QHAbprqQme" target="_blank">
+        <span class="cs-icon">💬</span>
+        <span class="cs-label">DISCORD</span>
+        <span class="cs-val">Community Server</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Blog -->
+  <div class="section-box orange">
+    <div class="sec-head">📜 SCROLL OF KNOWLEDGE — BLOG</div>
+    <div class="sec-body" style="padding:0;">
+      <a class="blog-entry" href="https://addyb0t.github.io/posts/" target="_blank">
+        <span class="be-icon">📝</span>
+        <div>
+          <div class="be-title">What I Learned Making My CV</div>
+          <div class="be-desc">Comprehensive guide on CV creation with STAR method and LaTeX formulas</div>
+        </div>
+      </a>
+      <a class="blog-entry" href="https://addyb0t.github.io/" target="_blank">
+        <span class="be-icon">🏠</span>
+        <div>
+          <div class="be-title">Visit Main Blog</div>
+          <div class="be-desc">More posts on technology, AI, and personal growth</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="game-footer">
+  <span class="coin">🪙</span> INSERT COIN TO CONTINUE <span class="coin">🪙</span>
+  <br><br>
+  © 2026 AADITYA BARAK | PRESS START
+  <br><br>
+  <a href="https://addyb0t.github.io/" target="_blank" style="color:var(--green);font-size:7px;text-decoration:none;">
+    addyb0t.github.io
+  </a>
+</div>
+
+<script>
+  // Generate stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 60; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.setProperty('--dur', (1.5 + Math.random() * 3) + 's');
+    star.style.setProperty('--delay', (Math.random() * 3) + 's');
+    if (Math.random() > 0.7) {
+      star.style.width = '3px';
+      star.style.height = '3px';
+    }
+    starsEl.appendChild(star);
+  }
+
+  // Shooting stars
+  for (let i = 0; i < 3; i++) {
+    const ss = document.createElement('div');
+    ss.className = 'shooting-star';
+    ss.style.setProperty('--delay', (i * 5 + Math.random() * 4) + 's');
+    ss.style.setProperty('--top', (Math.random() * 40) + '%');
+    starsEl.appendChild(ss);
+  }
+
+  // Coin counter animation
+  let coinTarget = 1337;
+  let coinCurrent = 0;
+  const coinEl = document.getElementById('coinCount');
+  function animateCoins() {
+    if (coinCurrent < coinTarget) {
+      coinCurrent += Math.ceil((coinTarget - coinCurrent) / 20);
+      if (coinCurrent > coinTarget) coinCurrent = coinTarget;
+      coinEl.textContent = coinCurrent;
+      requestAnimationFrame(animateCoins);
+    }
+  }
+  setTimeout(animateCoins, 500);
+
+  // XP counter
+  let xpTarget = 2850;
+  let xpCurrent = 0;
+  const xpEl = document.getElementById('xpCounter');
+  function animateXP() {
+    if (xpCurrent < xpTarget) {
+      xpCurrent += Math.ceil((xpTarget - xpCurrent) / 25);
+      if (xpCurrent > xpTarget) xpCurrent = xpTarget;
+      xpEl.textContent = 'TOTAL XP: ' + xpCurrent;
+      requestAnimationFrame(animateXP);
+    }
+  }
+  setTimeout(animateXP, 1500);
+
+  // Smooth scroll for nav
+  document.querySelectorAll('.nav-btn[href^="#"]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(btn.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Highlight active nav on scroll
+  const sections = document.querySelectorAll('.section-box[id], .hero[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) {
+        current = sec.id;
+      }
+    });
+    document.querySelectorAll('.nav-btn[href^="#"]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+
+</body>
+</html>
