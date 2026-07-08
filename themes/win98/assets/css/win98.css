@@ -37,6 +37,19 @@ body {
   height: calc(100vh - 28px);
   position: relative;
   overflow: hidden;
+  background: var(--win-bg);
+}
+
+.desktop.wallpaper-teal {
+  background: var(--win-bg);
+  background-image: none;
+}
+
+.desktop.wallpaper-classic {
+  background-image: url('/images/wallpapers/windows-98-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* === DESKTOP ICONS === */
@@ -92,6 +105,7 @@ body {
 }
 
 .w98-window.open { display: block; }
+.w98-window.open.minimized { display: none; }
 
 .w98-window.maximized {
   top: 0 !important;
@@ -333,6 +347,34 @@ body {
   margin-bottom: 6px;
 }
 
+.p-summary {
+  max-width: 600px;
+  font-size: 12px;
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+
+.profile-highlights {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(80px, 1fr));
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.profile-highlights span {
+  background: #fff;
+  box-shadow: var(--border-sunken);
+  padding: 4px;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.profile-highlights b {
+  display: block;
+  color: var(--win-navy);
+  font-size: 15px;
+}
+
 .profile-links-98 {
   display: flex;
   gap: 4px;
@@ -445,6 +487,106 @@ body {
   color: #666;
   line-height: 1.2;
 }
+
+.file-tile .ft-impact {
+  font-size: 9px;
+  color: #cc0000;
+  line-height: 1.15;
+  font-weight: bold;
+}
+
+.file-tile:hover .ft-impact { color: #ffff99; }
+
+/* === SHIPPED APPS === */
+.apps-intro {
+  background: #ffffe1;
+  box-shadow: var(--border-sunken);
+  padding: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.apps-intro span { display: block; margin-top: 2px; }
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.app-card {
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  gap: 8px;
+  align-items: flex-start;
+  color: #000;
+  text-decoration: none;
+  background: #fff;
+  box-shadow: var(--border-sunken);
+  padding: 8px;
+}
+
+.app-card:hover {
+  background: var(--win-navy);
+  color: #fff;
+}
+
+.app-icon, .app-mini-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--win-grey);
+  box-shadow: var(--border-raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.app-main { display: grid; gap: 2px; min-width: 0; }
+.app-name { font-weight: bold; color: var(--win-navy); font-size: 14px; }
+.app-card:hover .app-name { color: #fff; }
+.app-meta, .app-store { font-size: 10px; color: #666; }
+.app-card:hover .app-meta, .app-card:hover .app-store { color: #ddd; }
+.app-desc { font-size: 12px; line-height: 1.35; }
+
+.app-highlights {
+  display: grid;
+  gap: 1px;
+  font-size: 10px;
+  line-height: 1.25;
+}
+
+.app-highlights span::before { content: '▪ '; }
+.app-store { white-space: nowrap; }
+
+.apps-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 6px;
+}
+
+.app-mini {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #000;
+  text-decoration: none;
+  background: #fff;
+  box-shadow: var(--border-sunken);
+  padding: 6px;
+}
+
+.app-mini:hover {
+  background: var(--win-navy);
+  color: #fff;
+}
+
+.app-mini-text { display: grid; gap: 2px; font-size: 12px; }
+.app-mini-text small { color: #666; }
+.app-mini:hover small { color: #ddd; }
+.app-open-btn { margin-top: 8px; }
 
 /* === LIST VIEW (Detail) === */
 .list-view {
@@ -947,6 +1089,195 @@ body {
   background: var(--win-grey);
 }
 
+/* === DISPLAY PROPERTIES === */
+.display-body {
+  background: var(--win-grey);
+  padding: 6px;
+}
+
+.display-tabs {
+  display: flex;
+  align-items: flex-end;
+  height: 24px;
+}
+
+.display-tab {
+  background: var(--win-grey);
+  box-shadow: var(--border-button);
+  padding: 4px 12px 3px;
+  font-size: 12px;
+  height: 22px;
+}
+
+.display-tab.active {
+  height: 24px;
+  padding-top: 5px;
+  box-shadow: inset -1px 0 0 #000, inset 1px 1px 0 #fff;
+  background: #fff;
+}
+
+.display-panel {
+  background: #fff;
+  box-shadow: var(--border-sunken);
+  padding: 12px;
+  height: calc(100% - 24px);
+}
+
+.monitor-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.monitor-screen {
+  width: 230px;
+  height: 145px;
+  background: var(--win-bg);
+  box-shadow: var(--border-sunken);
+  position: relative;
+  overflow: hidden;
+}
+
+.monitor-screen.classic {
+  background-image: url('/images/wallpapers/windows-98-background.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.monitor-window {
+  position: absolute;
+  left: 54px;
+  top: 36px;
+  width: 110px;
+  height: 64px;
+  background: var(--win-grey);
+  box-shadow: var(--border-raised);
+}
+
+.monitor-window::before {
+  content: '';
+  display: block;
+  height: 14px;
+  background: var(--win-navy);
+}
+
+.monitor-icon {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 18px;
+  height: 22px;
+  background: #fff;
+  border-top: 4px solid #9fd5ff;
+  box-shadow: 1px 1px 0 #000;
+}
+
+.monitor-stand {
+  width: 76px;
+  height: 18px;
+  background: var(--win-grey);
+  box-shadow: var(--border-raised);
+}
+
+.wallpaper-options {
+  box-shadow: var(--border-sunken);
+  padding: 8px;
+}
+
+.wallpaper-label {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.wallpaper-choice {
+  width: 100%;
+  background: var(--win-grey);
+  box-shadow: var(--border-button);
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  margin-bottom: 5px;
+  font-family: inherit;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.wallpaper-choice.active {
+  background: var(--win-navy);
+  color: #fff;
+}
+
+.wallpaper-swatch {
+  width: 38px;
+  height: 24px;
+  box-shadow: var(--border-sunken);
+  flex-shrink: 0;
+}
+
+.swatch-teal { background: var(--win-bg); }
+.swatch-classic {
+  background-image: url('/images/wallpapers/windows-98-background.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.display-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+/* === PINBALL === */
+.pinball-body {
+  background: #050507;
+  color: #fff;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.pinball-score {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: #ffef5a;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  background: #080812;
+  border: 1px solid #2f315f;
+  padding: 4px 8px;
+  box-shadow: inset 1px 1px 0 #000, inset -1px -1px 0 #32345c;
+}
+
+#pinballCanvas {
+  width: min(100%, 420px);
+  aspect-ratio: 3 / 4;
+  height: auto;
+  background: #050507;
+  border: 2px solid #070708;
+  box-shadow: inset 0 0 0 2px #25254c, 0 0 0 1px #000, 0 8px 18px rgba(0,0,0,0.45);
+  image-rendering: pixelated;
+}
+
+.pinball-help {
+  font-size: 11px;
+  padding-left: 4px;
+}
+
+.pinball-touch-controls {
+  display: none;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 /* === RESPONSIVE === */
 @media (max-width: 800px) {
   .desk-icons { display: none; }
@@ -954,8 +1285,14 @@ body {
   .w98-tree { display: none; }
   .w98-window { left: 0 !important; top: 0 !important; width: 100% !important; height: calc(100vh - 28px) !important; }
   .profile-98 { flex-direction: column; align-items: center; text-align: center; }
+  .profile-highlights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .profile-links-98 { justify-content: center; }
   .contact98 { grid-template-columns: 1fr; }
   .file-grid { grid-template-columns: repeat(3, 1fr); }
+  .apps-grid { grid-template-columns: 1fr; }
+  .app-card { grid-template-columns: 42px 1fr; }
+  .app-store { grid-column: 2; }
+  .display-actions { justify-content: center; flex-wrap: wrap; }
+  .pinball-touch-controls { display: flex; }
   .startmenu98 { width: 100%; }
 }

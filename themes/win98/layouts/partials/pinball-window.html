@@ -1,0 +1,38 @@
+<div class="w98-window" id="win-pinball" style="top:24px;left:260px;width:510px;height:690px;">
+  <div class="w98-title" onmousedown="startDrag(event,'win-pinball')">
+    <div class="w98-title-left">
+      <span class="w98-title-icon">🎮</span> Pinball.exe
+    </div>
+    <div class="w98-title-btns">
+      <button class="w98-btn" onclick="minimizeWin('pinball')">_</button>
+      <button class="w98-btn" onclick="toggleMax('win-pinball')">&#9633;</button>
+      <button class="w98-btn" onclick="closeWin('pinball')">✕</button>
+    </div>
+  </div>
+  <div class="w98-menu">
+    <span>Game</span><span>Options</span><span>Help</span>
+  </div>
+  <div class="w98-toolbar">
+    <button class="w98-tb-btn" onclick="launchPinball()">▶ Launch</button>
+    <button class="w98-tb-btn" onclick="pausePinball()">⏸ Pause</button>
+    <button class="w98-tb-btn" onclick="resetPinball()">↻ Reset</button>
+    <div class="w98-tb-sep"></div>
+    <span class="pinball-help">Space launch · Z/X or ←/→ flippers</span>
+  </div>
+  <div class="w98-body pinball-body" style="height:calc(100% - 74px);">
+    <div class="pinball-score">
+      <span>Score: <b id="pinballScore">0</b></span>
+      <span>Balls: <b id="pinballLives">3</b></span>
+    </div>
+    <canvas id="pinballCanvas" width="420" height="560" aria-label="Playable pinball game"></canvas>
+    <div class="pinball-touch-controls">
+      <button class="dialog-btn" onpointerdown="pinballFlip('left', true)" onpointerup="pinballFlip('left', false)" onpointerleave="pinballFlip('left', false)">Left</button>
+      <button class="dialog-btn" onclick="launchPinball()">Launch</button>
+      <button class="dialog-btn" onpointerdown="pinballFlip('right', true)" onpointerup="pinballFlip('right', false)" onpointerleave="pinballFlip('right', false)">Right</button>
+    </div>
+  </div>
+  <div class="w98-status">
+    <div class="w98-status-sec" id="pinballStatus">Ready</div>
+    <div class="w98-status-sec">C:\Games\Pinball.exe</div>
+  </div>
+</div>

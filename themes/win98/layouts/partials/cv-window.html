@@ -16,7 +16,7 @@
   <div class="w98-toolbar">
     <button class="w98-tb-btn">📄 New</button>
     <div class="w98-tb-sep"></div>
-    <button class="w98-tb-btn">💾 Save</button>
+    {{ with site.Data.profile.resume_pdf }}<button class="w98-tb-btn" onclick="window.open('{{ . }}','_blank')">💾 Download PDF</button>{{ end }}
     <button class="w98-tb-btn">🖨️ Print</button>
   </div>
   <div class="w98-body" style="height:calc(100% - 80px);">

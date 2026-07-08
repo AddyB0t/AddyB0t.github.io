@@ -4,9 +4,13 @@
     {{ if .IsHome }}
     <div class="sm98-item" onclick="openWin('portfolio');closeStart()"><span class="sm98i">💻</span> My Portfolio</div>
     <div class="sm98-item" onclick="openWin('freelance');closeStart()"><span class="sm98i">🚀</span> Freelancing</div>
+    <div class="sm98-item" onclick="openWin('apps');closeStart()"><span class="sm98i">📱</span> Shipped Apps</div>
     <div class="sm98-item" onclick="openWin('projects');closeStart()"><span class="sm98i">📁</span> My Projects</div>
     <div class="sm98-item" onclick="openWin('blog');closeStart()"><span class="sm98i">📝</span> My Documents</div>
     <div class="sm98-item" onclick="openWin('cv');closeStart()"><span class="sm98i">📄</span> My CV</div>
+    <div class="sm98-sep"></div>
+    <div class="sm98-item" onclick="openWin('pinball');closeStart()"><span class="sm98i">🎮</span> Pinball.exe</div>
+    <div class="sm98-item" onclick="openWin('display');closeStart()"><span class="sm98i">🖼️</span> Display Properties</div>
     {{ else }}
     <a class="sm98-item" href="/"><span class="sm98i">💻</span> Desktop</a>
     {{ end }}

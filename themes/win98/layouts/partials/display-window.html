@@ -1,0 +1,44 @@
+<div class="w98-window" id="win-display" style="top:70px;left:250px;width:430px;height:430px;">
+  <div class="w98-title" onmousedown="startDrag(event,'win-display')">
+    <div class="w98-title-left">
+      <span class="w98-title-icon">🖼️</span> Display Properties
+    </div>
+    <div class="w98-title-btns">
+      <button class="w98-btn" onclick="minimizeWin('display')">_</button>
+      <button class="w98-btn" onclick="toggleMax('win-display')">&#9633;</button>
+      <button class="w98-btn" onclick="closeWin('display')">✕</button>
+    </div>
+  </div>
+  <div class="w98-body display-body" style="height:calc(100% - 28px);">
+    <div class="display-tabs">
+      <span class="display-tab active">Background</span>
+      <span class="display-tab">Appearance</span>
+      <span class="display-tab">Settings</span>
+    </div>
+    <div class="display-panel">
+      <div class="monitor-preview">
+        <div class="monitor-screen classic" id="wallpaperPreview">
+          <div class="monitor-window"></div>
+          <div class="monitor-icon"></div>
+        </div>
+        <div class="monitor-stand"></div>
+      </div>
+      <div class="wallpaper-options">
+        <div class="wallpaper-label">Wallpaper:</div>
+        <button class="wallpaper-choice" data-wallpaper="teal" onclick="setWallpaper('teal')">
+          <span class="wallpaper-swatch swatch-teal"></span>
+          Windows 98 Teal
+        </button>
+        <button class="wallpaper-choice active" data-wallpaper="classic" onclick="setWallpaper('classic')">
+          <span class="wallpaper-swatch swatch-classic"></span>
+          Classic Sky Hills
+        </button>
+      </div>
+      <div class="display-actions">
+        <button class="dialog-btn" onclick="setWallpaper(getSelectedWallpaper())">Apply</button>
+        <button class="dialog-btn" onclick="closeWin('display')">OK</button>
+        <button class="dialog-btn" onclick="closeWin('display')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,6 +16,7 @@
           <th>Name</th>
           <th>Type</th>
           <th>Tech</th>
+          <th>Impact</th>
           <th>Description</th>
         </tr>
       </thead>
@@ -25,6 +26,7 @@
           <td>{{ .icon }} {{ .name }}</td>
           <td>{{ .type }}</td>
           <td>{{ .tech }}</td>
+          <td>{{ .impact }}</td>
           <td>{{ .full_description | default .description }}</td>
         </tr>
         {{ end }}

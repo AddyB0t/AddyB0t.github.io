@@ -1,32 +1,40 @@
 <div class="desk-icons">
-  <div class="dicon" ondblclick="openWin('portfolio')">
+  <div class="dicon" onclick="openWin('portfolio')" ondblclick="openWin('portfolio')" tabindex="0" role="button">
     <div class="dicon-img">💻</div>
     <div class="dicon-label">My Portfolio</div>
   </div>
-  <div class="dicon" ondblclick="openWin('freelance')">
+  <div class="dicon" onclick="openWin('freelance')" ondblclick="openWin('freelance')" tabindex="0" role="button">
     <div class="dicon-img">🚀</div>
     <div class="dicon-label">Freelancing</div>
   </div>
-  <div class="dicon" ondblclick="openWin('projects')">
+  <div class="dicon" onclick="openWin('apps')" ondblclick="openWin('apps')" tabindex="0" role="button">
+    <div class="dicon-img">📱</div>
+    <div class="dicon-label">Shipped Apps</div>
+  </div>
+  <div class="dicon" onclick="openWin('projects')" ondblclick="openWin('projects')" tabindex="0" role="button">
     <div class="dicon-img">📁</div>
     <div class="dicon-label">My Projects</div>
   </div>
-  <div class="dicon" ondblclick="openWin('blog')">
+  <div class="dicon" onclick="openWin('blog')" ondblclick="openWin('blog')" tabindex="0" role="button">
     <div class="dicon-img">📝</div>
     <div class="dicon-label">My Documents</div>
   </div>
-  <div class="dicon" ondblclick="openWin('cv')">
+  <div class="dicon" onclick="openWin('cv')" ondblclick="openWin('cv')" tabindex="0" role="button">
     <div class="dicon-img">📄</div>
     <div class="dicon-label">My CV</div>
   </div>
+  <div class="dicon" onclick="openWin('pinball')" ondblclick="openWin('pinball')" tabindex="0" role="button">
+    <div class="dicon-img">🎮</div>
+    <div class="dicon-label">Pinball.exe</div>
+  </div>
+  <div class="dicon" onclick="openWin('display')" ondblclick="openWin('display')" tabindex="0" role="button">
+    <div class="dicon-img">🖼️</div>
+    <div class="dicon-label">Display</div>
+  </div>
   {{ range site.Data.profile.links }}{{ if .external }}
-  <div class="dicon" ondblclick="window.open('{{ .url }}','_blank')">
+  <div class="dicon" onclick="window.open('{{ .url }}','_blank')" tabindex="0" role="button">
     <div class="dicon-img">{{ .emoji }}</div>
     <div class="dicon-label">{{ .label }}</div>
   </div>
   {{ end }}{{ end }}
-  <div class="dicon">
-    <div class="dicon-img">🗑️</div>
-    <div class="dicon-label">Recycle Bin</div>
-  </div>
 </div>

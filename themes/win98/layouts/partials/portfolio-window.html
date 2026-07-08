@@ -32,15 +32,18 @@
           <div class="tree-item ti-open" onclick="scrollTo98('top98')">My Portfolio</div>
           <div class="tree-child">
             <div class="tree-item" onclick="scrollTo98('sec-exp')">Experience</div>
+            <div class="tree-item" onclick="scrollTo98('sec-apps')">Shipped Apps</div>
             <div class="tree-item" onclick="scrollTo98('sec-proj')">Projects</div>
             <div class="tree-item" onclick="scrollTo98('sec-skills')">Skills</div>
             <div class="tree-item" onclick="scrollTo98('sec-edu')">Education</div>
             <div class="tree-item" onclick="scrollTo98('sec-contact')">Contact</div>
           </div>
           <div class="tree-item" onclick="openWin('freelance')">🚀 Freelancing</div>
+          <div class="tree-item" onclick="openWin('apps')">📱 Shipped Apps</div>
           <div class="tree-item" onclick="openWin('projects')">My Projects</div>
           <div class="tree-item" onclick="openWin('blog')">📝 My Documents</div>
           <div class="tree-item" onclick="openWin('cv')">📄 My CV</div>
+          <div class="tree-item" onclick="openWin('display')">🖼️ Display</div>
         </div>
         <div class="tree-child">
           {{ range site.Data.profile.links }}{{ if .external }}
@@ -59,9 +62,18 @@
           <div class="profile-text">
             <h1>{{ site.Data.profile.name }}</h1>
             <div class="p-tag">{{ site.Data.profile.tagline }}</div>
+            <p class="p-summary">{{ site.Data.profile.summary }}</p>
+            <div class="profile-highlights">
+              {{ range site.Data.profile.highlights }}
+              <span><b>{{ .value }}</b>{{ .label }}</span>
+              {{ end }}
+            </div>
             <div class="profile-links-98">
               {{ range site.Data.profile.links }}
               <a class="p-link" href="{{ .url }}"{{ if .external }} target="_blank"{{ end }}>{{ .emoji }} {{ .label }}</a>
+              {{ end }}
+              {{ with site.Data.profile.resume_pdf }}
+              <a class="p-link" href="{{ . }}" target="_blank">📄 CV PDF</a>
               {{ end }}
             </div>
           </div>
@@ -84,6 +96,23 @@
           {{ end }}
         </div>
 
+        <!-- Shipped apps -->
+        <div class="w98-group" id="sec-apps">
+          <legend>📱 Shipped Apps</legend>
+          <div class="apps-strip">
+            {{ range site.Data.apps }}
+            <a class="app-mini" href="{{ .url }}" target="_blank" rel="noopener">
+              <span class="app-mini-icon">{{ .icon }}</span>
+              <span class="app-mini-text">
+                <b>{{ .name }}</b>
+                <small>{{ .platform }} / {{ .category }}</small>
+              </span>
+            </a>
+            {{ end }}
+          </div>
+          <button class="w98-tb-btn app-open-btn" onclick="openWin('apps')">📱 Open Product Shelf</button>
+        </div>
+
         <!-- Projects grid -->
         <div class="w98-group" id="sec-proj">
           <legend>📂 Projects</legend>
@@ -93,6 +122,7 @@
               <span class="ft-icon">{{ .icon }}</span>
               <span class="ft-name">{{ .name }}</span>
               <span class="ft-desc">{{ .description }}</span>
+              {{ with .impact }}<span class="ft-impact">{{ . }}</span>{{ end }}
             </a>
             {{ end }}
           </div>

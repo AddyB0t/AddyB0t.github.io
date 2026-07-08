@@ -1,6 +1,17 @@
 name: "Aaditya Barak"
-tagline: "AI Engineer — LLMs, RAG Systems, Document Intelligence"
+tagline: "AI & Backend Engineer - LLMs, RAG Systems, Document Intelligence"
+summary: "I build production AI systems that move from demo to deployment: document intelligence pipelines, RAG over real business files, backend infrastructure, and shipped mobile apps across AI, productivity, and habit tracking."
 photo: "/images/profile.jpg"
+resume_pdf: "/docs/aaditya-barak-cv.pdf"
+highlights:
+  - value: "1,000+"
+    label: "documents processed"
+  - value: "70%"
+    label: "manual effort reduced"
+  - value: "5"
+    label: "apps shipped"
+  - value: "2x"
+    label: "pipeline speedup"
 links:
   - emoji: "📧"
     label: "Email"
@@ -9,7 +20,7 @@ links:
     external: false
   - emoji: "💼"
     label: "LinkedIn"
-    url: "https://www.linkedin.com/in/aaditya-barak-a744b0317"
+    url: "https://linkedin.com/in/aaditya-barak"
     detail: "aaditya-barak"
     external: true
   - emoji: "🌐"

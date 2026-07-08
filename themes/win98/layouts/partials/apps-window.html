@@ -1,0 +1,53 @@
+<div class="w98-window" id="win-apps" style="top:42px;left:165px;width:760px;height:520px;">
+  <div class="w98-title" onmousedown="startDrag(event,'win-apps')">
+    <div class="w98-title-left">
+      <span class="w98-title-icon">📱</span> Shipped Apps - Product Shelf
+    </div>
+    <div class="w98-title-btns">
+      <button class="w98-btn" onclick="minimizeWin('apps')">_</button>
+      <button class="w98-btn" onclick="toggleMax('win-apps')">&#9633;</button>
+      <button class="w98-btn" onclick="closeWin('apps')">✕</button>
+    </div>
+  </div>
+  <div class="w98-menu">
+    <span>File</span><span>Edit</span><span>View</span><span>Store</span><span>Help</span>
+  </div>
+  <div class="w98-toolbar">
+    <button class="w98-tb-btn" onclick="openWin('portfolio')">💻 Portfolio</button>
+    <div class="w98-tb-sep"></div>
+    <button class="w98-tb-btn" onclick="openWin('projects')">📁 Projects</button>
+    <button class="w98-tb-btn" onclick="openWin('cv')">📄 CV</button>
+  </div>
+  <div class="w98-addr">
+    <span>Address:</span>
+    <input value="C:\Users\Addy\Products\Shipped Apps\" readonly>
+  </div>
+  <div class="w98-body" style="height:calc(100% - 92px);padding:8px;">
+    <div class="apps-intro">
+      <b>Built beyond demos.</b>
+      <span>These are shipped product surfaces across AI try-on, productivity, smoking/vaping recovery, and mindful alcohol tracking.</span>
+    </div>
+    <div class="apps-grid">
+      {{ range site.Data.apps }}
+      <a class="app-card" href="{{ .url }}" target="_blank" rel="noopener">
+        <span class="app-icon">{{ .icon }}</span>
+        <span class="app-main">
+          <span class="app-name">{{ .name }}</span>
+          <span class="app-meta">{{ .platform }} / {{ .category }}</span>
+          <span class="app-desc">{{ .description }}</span>
+          <span class="app-highlights">
+            {{ range first 2 .highlights }}
+            <span>{{ . }}</span>
+            {{ end }}
+          </span>
+        </span>
+        <span class="app-store">{{ .store }}</span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+  <div class="w98-status">
+    <div class="w98-status-sec">{{ len site.Data.apps }} shipped app(s)</div>
+    <div class="w98-status-sec">C:\Users\Addy\Products\</div>
+  </div>
+</div>

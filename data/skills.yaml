@@ -2,17 +2,19 @@
   percent: 95
 - name: "LLMs / GenAI"
   percent: 92
-- name: "RAG / LangChain"
+- name: "RAG / Vector Search"
   percent: 90
-- name: "PyTorch / ML"
+- name: "PyTorch / Transformers"
   percent: 88
-- name: "NLP / Transformers"
+- name: "FastAPI / Next.js"
   percent: 85
-- name: "CV / OCR"
+- name: "Docker / Linux"
+  percent: 84
+- name: "CV / OCR / PII"
   percent: 80
-- name: "Git / Linux"
-  percent: 82
-- name: "PostgreSQL / Redis"
+- name: "PostgreSQL / Supabase / Redis"
   percent: 78
+- name: "ONNX / Backend Optimization"
+  percent: 76
 - name: "JavaScript / SQL"
-  percent: 72
+  percent: 74
